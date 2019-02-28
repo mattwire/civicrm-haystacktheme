@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<extension key="haystack" type="module">
+  <file>haystack</file>
+  <name>Haystack - CiviCRM Theme</name>
+  <description>A simple, modern theme for CiviCRM</description>
+  <license>AGPL-3.0</license>
+  <maintainer>
+    <author>Christian Wach, Nic Wistreich, Matthew Wire (MJW Consulting)</author>
+    <email>mjw@mjwconsult.co.uk</email>
+  </maintainer>
+  <urls>
+    <url desc="Main Extension Page">https://github.com/mattwire/civicrm-haystacktheme</url>
+    <url desc="Support">https://github.com/mattwire/civicrm-haystacktheme</url>
+    <url desc="Licensing">http://www.gnu.org/licenses/agpl-3.0.html</url>
+  </urls>
+  <releaseDate>2019-02-28</releaseDate>
+  <version>0.1</version>
+  <develStage>alpha</develStage>
+  <compatibility>
+    <ver>5.12</ver>
+  </compatibility>
+  <civix>
+    <namespace>CRM/Haystack</namespace>
+  </civix>
+</extension>

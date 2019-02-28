@@ -1,0 +1,259 @@
+/**
+ * CiviCRM style overrides for WordPress when the Shoreditch Extension is present.
+ *
+ * Implements more appropriate and consistent styling for the CiviCRM admin menu
+ * as well as other miscellaneous fixes.
+ *
+ * Worth noting that the Shoreditch stylesheet file loads after this file, so any
+ * overrides must use greater specificity than Shoreditch does.
+ *
+ * @package WordPress
+ * @subpackage CiviCRM_Admin_Utilities
+ */
+
+
+
+/*
+--------------------------------------------------------------------------------
+CiviCRM admin menu style overrides
+--------------------------------------------------------------------------------
+*/
+
+/* No need for top padding or margin */
+html body:not(.toolbar),
+html body.wp-admin:not(.toolbar)
+{
+	padding-top: 0 !important;
+	margin-top: 0 !important;
+}
+
+/* Font selection */
+html body.wp-admin:not(.toolbar),
+body #civicrm-menu,
+body #root-menu-div ul,
+body #root-menu-div .menu-ul
+{
+	/* Match WordPress admin */
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif !important;
+	-webkit-font-smoothing: subpixel-antialiased;
+}
+
+/* Ensure menu sits on top of WordPress menu */
+body #civicrm-menu
+{
+	z-index: 100000;
+}
+
+/* Remove padding on dropdowns */
+body #root-menu-div .menu-ul
+{
+	padding: 0;
+}
+
+/* The dropdown Javascript determines the placement of the first-level dropdown by the height of this element */
+body #civicrm-menu li.menumain
+{
+	height: 32px !important;
+	/* Other tweaks */
+	outline: none;
+	padding: 0 10px;
+	line-height: 32px;
+}
+
+/* Ensure dropdowns appear directly below item */
+html>body #root-menu-div div.outerbox
+{
+	margin-top: 0;
+	padding: 0;
+}
+
+/* Tweak drop-shadow */
+body #root-menu-div .menu-ul
+{
+	box-shadow: 2px 2px 2px 0px rgba(48,40,40,0.1);
+}
+
+/* Give menu item arrow more space */
+body #root-menu-div .menu-item-arrow
+{
+	right: 10px;
+	top: 10px;
+	margin-right: 0;
+}
+
+/* The dropdown Javascript determines placement of the fly-out menus by the width of this element */
+body #root-menu-div div.menu-item
+{
+	/* Adjust padding to tweak placement */
+	padding-right: 30px;
+	padding-left: 10px;
+}
+
+/* Do not let this element interfere with placement */
+body #root-menu-div .menu-ul li:not(.menu-separator)
+{
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
+
+/* Drop search form font size */
+#sort_name_navigation
+{
+	font-size: 12px;
+}
+
+/* Adjust appearance of Search box */
+body #civicrm-menu li#crm-qsearch
+{
+	height: 32px !important;
+	padding: 0 24px 0 12px;
+	margin-right: 8px;
+}
+
+/* Vertically centre the form */
+body #civicrm-menu li#crm-qsearch > form
+{
+	margin-top: 2px;
+}
+
+/* Give the input some padding */
+body #civicrm-menu #crm-qsearch .form-text
+{
+	padding: 4px 0;
+}
+
+/* Fix placement of Results List */
+body #root-menu-div + .crm-quickSearch-results
+{
+	top: 31.5px !important;
+	box-shadow: 2px 2px 2px 0px rgba(48,40,40,0.1);
+}
+
+/* Adjust logo position */
+body #civicrm-menu .crm-logo-sm
+{
+	vertical-align: text-bottom;
+}
+
+
+
+/*
+--------------------------------------------------------------------------------
+Misc CiviCRM style fixes for WordPress
+--------------------------------------------------------------------------------
+*/
+
+body #crm-container div#printer-friendly
+{
+	margin: 0;
+}
+
+#crm-container, .crm-container
+{
+	padding-top: 12px;
+	margin-right: 20px;
+}
+
+.crm-queue-runner-form-block
+{
+	margin-top: 20px;
+	margin-right: 20px;
+}
+
+/* Remove green background from dialogs */
+.crm-container.ui-dialog .ui-dialog-content .crm-block
+{
+	background-color: #fff;
+}
+
+
+
+/*
+--------------------------------------------------------------------------------
+Temporary style fixes for Upgrade Screen with Shoreditch active
+--------------------------------------------------------------------------------
+*/
+
+/* Fix appearance of Upgrade button */
+.crm-container > form > button.crm-button[type=submit]
+{
+	color: #fff;
+	background-color: #0071bd;
+	border-color: #0062a4;
+	padding: 7px 19px;
+	line-height: 20px;
+}
+
+.crm-container > form > button.crm-button:hover[type=submit]
+{
+	background-color: #005c99;
+}
+
+.crm-container > form > button.crm-button[type=submit] > i
+{
+	display: none;
+}
+
+/* Fix appearance of Upgrade Cancel button */
+.crm-container > form > a.button.cancel
+{
+	background: #fff;
+    border: 1px solid #4d4d69;
+    color: #363342;
+}
+
+.crm-container > form > a.button.cancel:hover
+{
+	background: #3e3e54;
+    color: #fff !important;
+}
+
+.crm-container > form > a.button.cancel > i
+{
+	display: none;
+}
+
+
+
+/*
+--------------------------------------------------------------------------------
+Temporary style fixes for Shoreditch
+--------------------------------------------------------------------------------
+*/
+
+/* Remove the bottom margin on overidden navs */
+body #bootstrap-theme .nav-pills > li
+{
+	margin-bottom: 0;
+}
+
+/* Give the action links room to breathe */
+body .crm-container .action-link
+{
+	height: 44px;
+}
+
+/* Vertically centre the text in the action buttons */
+body .crm-container #crm-main-content-wrapper div.action-link a.button
+{
+	padding-bottom: 27px;
+}
+
+/* Give submit button container some extra height */
+body .crm-container .crm-submit-buttons
+{
+	height: 40px;
+}
+
+/* Tweak submit buttons */
+body .crm-container a.button
+{
+	height: 36px;
+}
+
+/* Anything but black on rollover! */
+body .crm-container a.button:hover
+{
+	color: #fff;
+}
+
