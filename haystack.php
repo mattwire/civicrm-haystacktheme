@@ -155,12 +155,8 @@ function haystack_symfony_civicrm_coreResourceList( $event, $hook ) {
   list($items, $region) = $event->getHookValues();
 
   if ($region == 'html-header') {
-    CRM_Core_Resources::singleton()
-      ->addStyleFile('haystack', 'css/civicrm-admin-utilities-admin.css', -50, 'html-header');
-    // TODO: Add a setting to choose light/dark menu theme
-    //CRM_Core_Resources::singleton()
-    //  ->addStyleFile('haystack', 'css/civicrm-admin-utilities-kam.css', -50, 'html-header');
   }
   $main = new CRM_Haystack_Main();
   $main->resources_disable();
+  $main->resources_enable($region);
 }

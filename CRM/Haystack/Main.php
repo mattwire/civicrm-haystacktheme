@@ -6,6 +6,8 @@
  * Time: 19:32
  */
 
+use CRM_Haystack_ExtensionUtil as E;
+
 class CRM_Haystack_Main {
 
   /**
@@ -74,7 +76,37 @@ class CRM_Haystack_Main {
 
   }
 
+  /**
+   * Enable CiviCRM theme resources
+   *
+   * @param $region
+   */
+  public function resources_enable($region) {
+    if ($region == 'html-header') {
+      $config = CRM_Core_Config::singleton();
+      switch ($config->userFramework) {
+        case 'Joomla':
+          $css = 'joomla';
+          break;
+        case 'WordPress':
+          $css = 'wordpress';
+          break;
+        case 'Drupal':
+        default:
+          $css = 'drupal';
+      }
+      if (file_exists(E::path('css/haystack-civicrm-' . $css . '-base.css'))) {
+        CRM_Core_Resources::singleton()
+          ->addStyleFile('haystack', 'css/haystack-civicrm-' . $css . '-base.css', -50, $region);
+      }
 
+      CRM_Core_Resources::singleton()
+        ->addStyleFile('haystack', 'css/civicrm-admin-utilities-admin.css', -50, $region);
+      // TODO: Add a setting to choose light/dark menu theme
+      //CRM_Core_Resources::singleton()
+      //  ->addStyleFile('haystack', 'css/civicrm-admin-utilities-kam.css', -50, 'html-header');
+    }
+  }
 
   /**
    * Disable a resource enqueued by CiviCRM.
@@ -83,7 +115,7 @@ class CRM_Haystack_Main {
    * @param str $extension The name of the extension e.g. 'org.civicrm.shoreditch'. Default is CiviCRM core.
    * @param str $file The relative path to the resource. Default is CiviCRM core stylesheet.
    */
-  public function resource_disable( $extension = 'civicrm', $file = 'css/civicrm.css' ) {
+  public function resource_disable($extension = 'civicrm', $file = 'css/civicrm.css') {
 
     // Get the resource URL.
     $url = $this->resource_get_url( $extension, $file );
@@ -92,10 +124,9 @@ class CRM_Haystack_Main {
     if ( $url === false ) return;
 
     // Set to disabled.
-    CRM_Core_Region::instance('html-header')->update( $url, array( 'disabled' => TRUE ) );
+    CRM_Core_Region::instance('html-header')->update( $url, array( 'disabled' => FALSE ) );
 
   }
-
 
   /**
    * Get the URL of a resource if it is enqueued by CiviCRM.
