@@ -83,17 +83,18 @@ class CRM_Haystack_Main {
    */
   public function resources_enable($region) {
     if ($region == 'html-header') {
-      $config = CRM_Core_Config::singleton();
-      switch ($config->userFramework) {
-        case 'Joomla':
+      switch (strtolower(CRM_Core_Config::singleton()->userFramework)) {
+        case 'joomla':
           $css = 'joomla';
           break;
-        case 'WordPress':
+        case 'wordpress':
           $css = 'wordpress';
           break;
-        case 'Drupal':
+        case 'drupal':
+          $css = 'drupal7';
+          break;
         default:
-          $css = 'drupal';
+          $css = 'drupal7';
       }
       if (file_exists(E::path('css/haystack-civicrm-' . $css . '-base.css'))) {
         CRM_Core_Resources::singleton()
