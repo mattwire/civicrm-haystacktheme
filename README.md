@@ -7,6 +7,11 @@ The extension is licensed under [AGPL-3.0](LICENSE.txt).
 
 Based on https://github.com/christianwach/civicrm-admin-utilities/commit/5fbc85b77ff28847866eaa51acf318333bb3acf6
 
+Go to Administer->Customize Data and Screens->Haystack theme settings to configure:
+1. Dark or light menu theme.
+2. Enable responsive datatables.
+3. Disable CiviCRM core css.
+
 ## Requirements
 
 * PHP v7.0+
@@ -40,6 +45,7 @@ cv en haystack
 
 1. Disable any other CiviCRM theme extensions.
 2. Enable this extension.
+
 
 ## Known Issues
 

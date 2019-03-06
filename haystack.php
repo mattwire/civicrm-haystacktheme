@@ -14,6 +14,7 @@ function haystack_civicrm_config(&$config) {
 
   // Add listeners for CiviCRM hooks that might need altering by other scripts
   Civi::service('dispatcher')->addListener('hook_civicrm_coreResourceList', 'haystack_symfony_civicrm_coreResourceList', -100);
+  Civi::service('dispatcher')->addListener('hook_civicrm_alterContent', 'haystack_symfony_civicrm_alterContent', -100);
   //Civi::service('dispatcher')->addListener('hook_civicrm_buildForm', 'haystack_symfony_civicrm_buildForm', -100);
   //Civi::service('dispatcher')->addListener('hook_civicrm_pageRun', 'haystack_symfony_civicrm_pageRun', -100);
 
@@ -139,7 +140,7 @@ function haystack_civicrm_alterSettingsFolders(&$metaDataFolders = NULL) {
 
 /**
  * Implements hook_civicrm_entityTypes().
- *
+ *\
  * Declare entity types provided by this module.
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_entityTypes
@@ -151,13 +152,55 @@ function haystack_civicrm_entityTypes(&$entityTypes) {
 /**
  * Implements hook_civicrm_coreResourceList() via Symfony hook system.
  */
-function haystack_symfony_civicrm_coreResourceList( $event, $hook ) {
+function haystack_symfony_civicrm_coreResourceList($event, $hook) {
   // Extract args for this hook
   list($items, $region) = $event->getHookValues();
 
   if ($region == 'html-header') {
+    $main = new CRM_Haystack_Main();
+    $main->resources_disable();
+    $main->resources_enable($region);
   }
-  $main = new CRM_Haystack_Main();
-  $main->resources_disable();
-  $main->resources_enable($region);
+}
+
+function haystack_symfony_civicrm_alterContent($event, $hook) {
+  if ((boolean) CRM_Haystack_Settings::getValue('responsive_datatables')) {
+    // Enable responsive datatables (we could do this in Civi core by adding responsive=true in jquery.crmAjaxTable.js)
+    // Not all tables are datatables, this only works on the ones which are (add the responsive selector to them)
+    $event->content = str_replace(['crm-ajax-table', 'class="selector', 'class="display"'], ['crm-ajax-table responsive', 'class="selector responsive', 'class="display responsive"'], $event->content);
+  }
+}
+
+/**
+ * Implements hook_civicrm_buildAsset().
+ *
+ * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_buildAsset
+ */
+function haystack_civicrm_buildAsset($asset, $params, &$mimetype, &$content) {
+  if ($asset !== 'haystack-civicrm-shared.css') {
+    return;
+  }
+  $raw = file_get_contents(Civi::resources()->getPath(E::LONG_NAME, "css/{$asset}"));
+  $content = str_replace('../../../civicrm/civicrm/', Civi::resources()->getUrl('civicrm'), $raw);
+  $mimetype = 'text/css';
+}
+
+/**
+ * Implements hook_civicrm_navigationMenu().
+ *
+ * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_navigationMenu
+ *
+ */
+function haystack_civicrm_navigationMenu(&$menu) {
+  $item[] = [
+    'label' => E::ts('Haystack theme settings'),
+    'name'  => 'Haystack theme settings',
+    'url'   => 'civicrm/admin/haystack/settings',
+    'permission' => 'administer CiviCRM',
+    'operator'   => NULL,
+    'separator'  => NULL,
+  ];
+  _haystack_civix_insert_navigation_menu($menu, 'Administer/Customize Data and Screens', $item[0]);
+
+  _haystack_civix_navigationMenu($menu);
 }

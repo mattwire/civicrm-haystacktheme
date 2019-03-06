@@ -10,70 +10,41 @@ use CRM_Haystack_ExtensionUtil as E;
 
 class CRM_Haystack_Main {
 
+  public function isAdmin() {
+    return (!CRM_Core_Config::singleton()->userFrameworkFrontend || CRM_Core_Config::singleton()->userFramework == 'drupal');
+  }
+
   /**
    * Disable CiviCRM resources from front-end.
    *
    */
   public function resources_disable() {
 
-    // Only on back-end.
-    //if ( is_admin() ) {
+    // Maybe disable core stylesheet.
+    if ((boolean) CRM_Haystack_Settings::getValue('disable_civicrm_core_css')) {
+      Civi::settings()->set('disable_core_css', TRUE);
+      $this->resource_disable( 'civicrm', 'css/civicrm.css' );
+    }
 
-      // Maybe disable core stylesheet.
-      /*if ( $this->setting_get( 'css_admin', '0' ) == '1' ) {
-
-        // Disable core stylesheet.
-        $this->resource_disable( 'civicrm', 'css/civicrm.css' );
-
-        // Also disable Shoreditch if present.
-        if ( $this->shoreditch_is_active() ) {
-          $this->resource_disable( 'org.civicrm.shoreditch', 'css/custom-civicrm.css' );
-        }
-
-      }
-
-      // Maybe disable custom stylesheet (not provided by Shoreditch).
-      if ( $this->setting_get( 'css_custom_public', '0' ) == '1' ) {
-        $this->custom_css_disable();
-      }*/
-
-      // Only on front-end.
-    //} else {
-
-      // Maybe disable core stylesheet.
-      /*if ( $this->setting_get( 'css_default', '0' ) == '1' ) {
-        $this->resource_disable( 'civicrm', 'css/civicrm.css' );
-      }
-
+    if (!$this->isAdmin()) {
       // Maybe disable navigation stylesheet (there's no menu on the front-end).
-      if ( $this->setting_get( 'css_navigation', '0' ) == '1' ) {
-        $this->resource_disable( 'civicrm', 'css/civicrmNavigation.css' );
-      }*/
+      $this->resource_disable('civicrm', 'css/civicrmNavigation.css');
 
       // If Shoreditch present.
-      if ( $this->shoreditch_is_active() ) {
-
+      if ($this->shoreditch_is_active()) {
         // Maybe disable Shoreditch stylesheet.
-        //if ( $this->setting_get( 'css_shoreditch', '0' ) == '1' ) {
-          $this->resource_disable( 'org.civicrm.shoreditch', 'css/custom-civicrm.css' );
-        //}
+        $this->resource_disable('org.civicrm.shoreditch', 'css/custom-civicrm.css');
 
         // Maybe disable Shoreditch Bootstrap stylesheet.
-        //if ( $this->setting_get( 'css_bootstrap', '0' ) == '1' ) {
-          $this->resource_disable( 'org.civicrm.shoreditch', 'css/bootstrap.css' );
-        //}
-
-      } else {
-
-        // Maybe disable custom stylesheet (not provided by Shoreditch).
-        //if ( $this->setting_get( 'css_custom', '0' ) == '1' ) {
-          $this->custom_css_disable();
-        //}
+        $this->resource_disable('org.civicrm.shoreditch', 'css/bootstrap.css');
 
       }
-
-    //}
-
+      else {
+        // Maybe disable custom stylesheet (not provided by Shoreditch).
+        //if ( $this->setting_get( 'css_custom', '0' ) == '1' ) {
+        $this->custom_css_disable();
+      }
+    }
   }
 
   /**
@@ -82,6 +53,7 @@ class CRM_Haystack_Main {
    * @param $region
    */
   public function resources_enable($region) {
+    // Load a cms specific css file
     if ($region == 'html-header') {
       switch (strtolower(CRM_Core_Config::singleton()->userFramework)) {
         case 'joomla':
@@ -102,10 +74,20 @@ class CRM_Haystack_Main {
       }
 
       CRM_Core_Resources::singleton()
-        ->addStyleFile('haystack', 'css/civicrm-admin-utilities-admin.css', -50, $region);
-      // TODO: Add a setting to choose light/dark menu theme
-      //CRM_Core_Resources::singleton()
-      //  ->addStyleFile('haystack', 'css/civicrm-admin-utilities-kam.css', -50, 'html-header');
+      ->addStyleUrl(\Civi::service('asset_builder')->getUrl('haystack-civicrm-shared.css'));
+
+      if ((boolean) CRM_Haystack_Settings::getValue('menu_theme')) {
+        CRM_Core_Resources::singleton()
+          ->addStyleFile('haystack', 'css/haystack-civicrm-menu-dark.css', -50, $region);
+      }
+
+      if ((boolean) CRM_Haystack_Settings::getValue('responsive_datatables')) {
+        // If we want responsive datatables?
+        CRM_Core_Resources::singleton()
+          ->addStyleFile('haystack', 'css/responsive.dataTables.min.css', -50, $region);
+        CRM_Core_Resources::singleton()
+          ->addScriptFile('haystack', 'js/dataTables.responsive.min.js', -50, $region);
+      }
     }
   }
 
