@@ -48,4 +48,4 @@ cv en haystack
 
 
 ## Known Issues
-
+1. Slow to load haystack-civicrm-shared.css because of assetbuilder.  Maybe extract the "paths" into their own css file and just pass that one through assetbuilder? 
