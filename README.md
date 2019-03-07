@@ -1,7 +1,6 @@
 # haystack
 
 This provides a simple, modern theme for CiviCRM (based on the theme supplied in CiviCRM Admin Utilities for Wordpress).
-The extension is licensed under [AGPL-3.0](LICENSE.txt).
 
 ![Screenshot](/images/contactsummary.png)
 
@@ -16,6 +15,11 @@ Go to Administer->Customize Data and Screens->Haystack theme settings to configu
 
 * PHP v7.0+
 * CiviCRM 5.12
+
+## Licensing
+The extension is licensed under [AGPL-3.0](LICENSE.txt).
+
+Original work: License: GPLv2 or later (http://www.gnu.org/licenses/gpl-2.0.html)
 
 ## Installation (Web UI)
 
