@@ -3051,6 +3051,11 @@ tbody.scrollContent tr.alternateRow {
 	background-color: transparent;
 }
 
+/* Primary labels are bolder than the rest to stand out */
+.crm-container .primary .crm-label {
+  font-weight: bold;
+}
+
 .crm-container table.crm-info-panel td {
 	border-bottom: 1px solid #ebebeb;
 }
