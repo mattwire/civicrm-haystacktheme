@@ -32,7 +32,7 @@ install it with the command-line tool [cv](https://github.com/civicrm/cv).
 
 ```bash
 cd <extension-dir>
-cv dl haystack@https://github.com/mattwire/civicrm-haystack/archive/master.zip
+cv dl haystack@https://github.com/mattwire/civicrm-haystacktheme/archive/master.zip
 ```
 
 ## Installation (CLI, Git)
@@ -41,7 +41,7 @@ Sysadmins and developers may clone the [Git](https://en.wikipedia.org/wiki/Git) 
 install it with the command-line tool [cv](https://github.com/civicrm/cv).
 
 ```bash
-git clone https://github.com/mattwire/civicrm-haystack.git
+git clone https://github.com/mattwire/civicrm-haystacktheme.git
 cv en haystack
 ```
 
@@ -52,4 +52,8 @@ cv en haystack
 
 
 ## Known Issues
-1. Slow to load haystack-civicrm-shared.css because of assetbuilder.  Maybe extract the "paths" into their own css file and just pass that one through assetbuilder? 
+1. Slow to load haystack-civicrm-shared.css when in debug mode because of assetbuilder.  Maybe extract the "paths" into their own css file and just pass that one through assetbuilder?
+
+## Nasty hacks / overrides that should be fixed in core
+1. civicrm_case_dashboard_hack.js - removes the td label class.
+2. civicrm_contribute_dashboard_hack.js - removes the td label class.

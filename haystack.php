@@ -15,7 +15,7 @@ function haystack_civicrm_config(&$config) {
   // Add listeners for CiviCRM hooks that might need altering by other scripts
   Civi::service('dispatcher')->addListener('hook_civicrm_coreResourceList', 'haystack_symfony_civicrm_coreResourceList', -100);
   Civi::service('dispatcher')->addListener('hook_civicrm_alterContent', 'haystack_symfony_civicrm_alterContent', -100);
-  //Civi::service('dispatcher')->addListener('hook_civicrm_buildForm', 'haystack_symfony_civicrm_buildForm', -100);
+  Civi::service('dispatcher')->addListener('hook_civicrm_buildForm', 'haystack_symfony_civicrm_buildForm', -100);
   //Civi::service('dispatcher')->addListener('hook_civicrm_pageRun', 'haystack_symfony_civicrm_pageRun', -100);
 
   /**
@@ -149,6 +149,27 @@ function haystack_civicrm_entityTypes(&$entityTypes) {
   _haystack_civix_civicrm_entityTypes($entityTypes);
 }
 
+
+/**
+ * Implements hook_civicrm_navigationMenu().
+ *
+ * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_navigationMenu
+ *
+ */
+function haystack_civicrm_navigationMenu(&$menu) {
+  $item[] = [
+    'label' => E::ts('Haystack theme settings'),
+    'name'  => 'Haystack theme settings',
+    'url'   => 'civicrm/admin/haystack/settings',
+    'permission' => 'administer CiviCRM',
+    'operator'   => NULL,
+    'separator'  => NULL,
+  ];
+  _haystack_civix_insert_navigation_menu($menu, 'Administer/Customize Data and Screens', $item[0]);
+
+  _haystack_civix_navigationMenu($menu);
+}
+
 /**
  * Implements hook_civicrm_coreResourceList() via Symfony hook system.
  */
@@ -160,6 +181,25 @@ function haystack_symfony_civicrm_coreResourceList($event, $hook) {
     $main = new CRM_Haystack_Main();
     $main->resources_disable();
     $main->resources_enable($region);
+  }
+}
+
+function haystack_symfony_civicrm_buildForm( $event, $hook ) {
+  // Extract args for this hook
+  list($formName) = $event->getHookValues();
+
+  // FIXME: These are NASTY hacks to remove the td label class on the dashboards so the tables render correctly - 'label' conflicts with bootstrap.
+  switch ($formName) {
+    case 'CRM_Contribute_Form_ContributionCharts':
+      CRM_Core_Resources::singleton()
+        ->addScriptFile('haystack', 'js/civicrm_contribute_dashboard_hack.js', -50, 'html-header');
+      break;
+
+    case 'CRM_Case_Form_Search':
+      CRM_Core_Resources::singleton()
+        ->addScriptFile('haystack', 'js/civicrm_case_dashboard_hack.js', -50, 'html-header');
+      break;
+
   }
 }
 
@@ -183,24 +223,4 @@ function haystack_civicrm_buildAsset($asset, $params, &$mimetype, &$content) {
   $raw = file_get_contents(Civi::resources()->getPath(E::LONG_NAME, "css/{$asset}"));
   $content = str_replace('../../../civicrm/civicrm/', Civi::resources()->getUrl('civicrm'), $raw);
   $mimetype = 'text/css';
-}
-
-/**
- * Implements hook_civicrm_navigationMenu().
- *
- * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_navigationMenu
- *
- */
-function haystack_civicrm_navigationMenu(&$menu) {
-  $item[] = [
-    'label' => E::ts('Haystack theme settings'),
-    'name'  => 'Haystack theme settings',
-    'url'   => 'civicrm/admin/haystack/settings',
-    'permission' => 'administer CiviCRM',
-    'operator'   => NULL,
-    'separator'  => NULL,
-  ];
-  _haystack_civix_insert_navigation_menu($menu, 'Administer/Customize Data and Screens', $item[0]);
-
-  _haystack_civix_navigationMenu($menu);
 }
