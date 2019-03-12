@@ -5012,3 +5012,13 @@ Contact Summary Editor extension support
 {
 	margin-top: 9px;
 }
+
+/*
+--------------------------------------------------------------------------------
+Misc fixes added by MJW in the CiviCRM Haystack extension
+--------------------------------------------------------------------------------
+ */
+/* If using a bootstrap theme ensure that labels are display properly in TD elements. */
+td.label {
+	display: block;
+}

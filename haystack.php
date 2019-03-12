@@ -187,20 +187,6 @@ function haystack_symfony_civicrm_coreResourceList($event, $hook) {
 function haystack_symfony_civicrm_buildForm( $event, $hook ) {
   // Extract args for this hook
   list($formName) = $event->getHookValues();
-
-  // FIXME: These are NASTY hacks to remove the td label class on the dashboards so the tables render correctly - 'label' conflicts with bootstrap.
-  switch ($formName) {
-    case 'CRM_Contribute_Form_ContributionCharts':
-      CRM_Core_Resources::singleton()
-        ->addScriptFile('haystack', 'js/civicrm_contribute_dashboard_hack.js', -50, 'html-header');
-      break;
-
-    case 'CRM_Case_Form_Search':
-      CRM_Core_Resources::singleton()
-        ->addScriptFile('haystack', 'js/civicrm_case_dashboard_hack.js', -50, 'html-header');
-      break;
-
-  }
 }
 
 function haystack_symfony_civicrm_alterContent($event, $hook) {
