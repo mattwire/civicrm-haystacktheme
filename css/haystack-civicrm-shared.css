@@ -5022,3 +5022,9 @@ Misc fixes added by MJW in the CiviCRM Haystack extension
 td.label {
 	display: block;
 }
+
+#crm-container table.report-layout td {
+	color: inherit;
+	width: auto;
+	height: auto;
+}
