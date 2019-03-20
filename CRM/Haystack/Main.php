@@ -88,6 +88,13 @@ class CRM_Haystack_Main {
         CRM_Core_Resources::singleton()
           ->addScriptFile('haystack', 'js/dataTables.responsive.min.js', -50, $region);
       }
+      if ((boolean) CRM_Haystack_Settings::getValue('responsive_tables')) {
+        // If we want responsive tables?
+        CRM_Core_Resources::singleton()
+          ->addStyleFile('haystack', 'css/responsivetables.css', -50, $region);
+        CRM_Core_Resources::singleton()
+          ->addScriptFile('haystack', 'js/responsivetables.js', -50, $region);
+      }
     }
   }
 
