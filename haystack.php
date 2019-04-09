@@ -12,10 +12,13 @@ use \Civi\Core\Event\GenericHookEvent;
 function haystack_civicrm_config(&$config) {
   _haystack_civix_civicrm_config($config);
 
+  if (isset(Civi::$statics[__FUNCTION__])) { return; }
+  Civi::$statics[__FUNCTION__] = 1;
+
   // Add listeners for CiviCRM hooks that might need altering by other scripts
-  Civi::service('dispatcher')->addListener('hook_civicrm_coreResourceList', 'haystack_symfony_civicrm_coreResourceList', -100);
-  Civi::service('dispatcher')->addListener('hook_civicrm_alterContent', 'haystack_symfony_civicrm_alterContent', -100);
-  Civi::service('dispatcher')->addListener('hook_civicrm_buildForm', 'haystack_symfony_civicrm_buildForm', -100);
+  Civi::dispatcher()->addListener('hook_civicrm_coreResourceList', 'haystack_symfony_civicrm_coreResourceList', -100);
+  Civi::dispatcher()->addListener('hook_civicrm_alterContent', 'haystack_symfony_civicrm_alterContent', -100);
+  Civi::dispatcher()->addListener('hook_civicrm_buildForm', 'haystack_symfony_civicrm_buildForm', -100);
   //Civi::service('dispatcher')->addListener('hook_civicrm_pageRun', 'haystack_symfony_civicrm_pageRun', -100);
 
   /**
@@ -24,7 +27,7 @@ function haystack_civicrm_config(&$config) {
    * @param string $hook_name The dispatched hook name.
    * @param object $hook_event The dispatched hook event object.
    */
-  Civi::service('dispatcher')->dispatch('hook_haystack_civicrm_config', GenericHookEvent::create(array()));
+  Civi::dispatcher()->dispatch('hook_haystack_civicrm_config', GenericHookEvent::create(array()));
 }
 
 /**

@@ -1,0 +1,27 @@
+/*
+--------------------------------------------------------------------------------
+Misc fixes added by MJW in the CiviCRM Haystack extension
+--------------------------------------------------------------------------------
+ */
+/* If using a bootstrap theme ensure that labels are display properly in TD elements. */
+#crm-container td.label {
+  white-space: normal;
+  display: block;
+}
+
+/* For reports, make sure the text is visible */
+#crm-container table.report-layout td {
+  color: inherit;
+  width: auto;
+  height: auto;
+}
+
+/* Allow wrapping text for forms that use "div" instead of tables. */
+.crm-container form table label {
+  white-space: normal;
+}
+
+/* This stops white label text on a white background with contribution pages and bootstrap */
+div.crm-section div.label {
+  color: inherit;
+}
