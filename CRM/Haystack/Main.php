@@ -68,18 +68,15 @@ class CRM_Haystack_Main {
         default:
           $css = 'drupal7';
       }
-      if (file_exists(E::path('css/haystack-civicrm-' . $css . '-base.css'))) {
+
+      $theme = CRM_Haystack_Settings::getValue('theme');
+      if (file_exists(E::path("theme/{$theme}/{$css}.css"))) {
         CRM_Core_Resources::singleton()
-          ->addStyleFile('haystack', 'css/haystack-civicrm-' . $css . '-base.css', -50, $region);
+          ->addStyleFile('haystack', "theme/{$theme}/{$css}.css", -50, $region);
       }
 
       CRM_Core_Resources::singleton()
-      ->addStyleUrl(\Civi::service('asset_builder')->getUrl('haystack-civicrm-shared.css'));
-
-      if ((boolean) CRM_Haystack_Settings::getValue('menu_theme')) {
-        CRM_Core_Resources::singleton()
-          ->addStyleFile('haystack', 'css/haystack-civicrm-menu-dark.css', -50, $region);
-      }
+      ->addStyleUrl(\Civi::service('asset_builder')->getUrl('main.css'));
 
       if ((boolean) CRM_Haystack_Settings::getValue('responsive_datatables')) {
         // If we want responsive datatables?

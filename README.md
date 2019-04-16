@@ -7,9 +7,9 @@ This provides a simple, modern theme for CiviCRM (based on the theme supplied in
 Based on https://github.com/christianwach/civicrm-admin-utilities/commit/5fbc85b77ff28847866eaa51acf318333bb3acf6
 
 Go to Administer->Customize Data and Screens->Haystack theme settings to configure:
-1. Dark or light menu theme.
-2. Enable responsive datatables.
-3. Disable CiviCRM core css.
+* Enable responsive datatables.
+* Enable responsive tables.
+* Select theme.
 
 ## Requirements
 

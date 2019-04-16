@@ -32,9 +32,11 @@ use CRM_Haystack_ExtensionUtil as E;
  */
 class CRM_Haystack_Form_Settings extends CRM_Core_Form {
 
-  function buildQuickForm() {
-    parent::buildQuickForm();
+  public function getDefaultEntity() {
+    return;
+  }
 
+  public function buildQuickForm() {
     $className = E::CLASS_PREFIX . '_Settings';
     CRM_Utils_System::setTitle($className::TITLE . ' - ' . E::ts('Settings'));
 
