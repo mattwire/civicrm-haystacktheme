@@ -124,11 +124,37 @@ class CRM_Haystack_Main {
       }
 
       if ($loadFrontend) {
-        if (file_exists(E::path("theme/{$theme}/frontend.css"))) {
-          CRM_Core_Resources::singleton()
-            ->addStyleUrl(\Civi::service('asset_builder')->getUrl('frontend.css'));
+        if ($this->isAdmin()) {
+          if (file_exists(E::path("theme/{$theme}/frontend.css"))) {
+            CRM_Core_Resources::singleton()
+              ->addStyleUrl(\Civi::service('asset_builder')
+                ->getUrl('frontend.css'));
+          }
+        }
+        else {
+          $this->addCssToFrontend('frontend.css');
         }
       }
+    }
+  }
+
+  public function addCssToFrontend($cssFile) {
+    if (function_exists('wp_enqueue_style')) {
+      // Add frontend css for Wordpress
+      wp_enqueue_style(
+        'civicrm_haystacktheme_frontend',
+        \Civi::service('asset_builder')->getUrl($cssFile),
+        NULL,
+        '1.0', // Version.
+        'all' // Media.
+      );
+    }
+    else {
+      // This will work for Drupal
+      // @fixme Add a Joomla method
+      CRM_Core_Resources::singleton()
+        ->addStyleUrl(\Civi::service('asset_builder')
+          ->getUrl('frontend.css'));
     }
   }
 

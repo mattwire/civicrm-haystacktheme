@@ -22,7 +22,7 @@ function haystack_civicrm_config(&$config) {
   //Civi::service('dispatcher')->addListener('hook_civicrm_pageRun', 'haystack_symfony_civicrm_pageRun', -100);
 
 
-  // For Wordpress we need to register hook_civicrm_custom for it to fire from frontend forms (eg. Caldera CiviCRM integration)
+  // For Wordpress we need to register hooks to add css to frontend
   if (function_exists('civi_wp') && function_exists('add_action')) {
     // Hook in just before CiviCRM does to disable resources.
     add_action('admin_head', 'haystack_wp_resources', 9);
