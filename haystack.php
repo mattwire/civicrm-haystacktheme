@@ -206,12 +206,14 @@ function haystack_symfony_civicrm_alterContent($event, $hook) {
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_buildAsset
  */
 function haystack_civicrm_buildAsset($asset, $params, &$mimetype, &$content) {
-  if ($asset !== 'main.css') {
+  $validAssets = ['main.css', 'frontend.css'];
+  if (!in_array($asset, $validAssets)) {
     return;
   }
+
   $theme = CRM_Haystack_Settings::getValue('theme');
-  $cssFile = "theme/{$theme}/main.css";
+  $cssFile = "theme/{$theme}/{$asset}";
   $raw = file_get_contents(Civi::resources()->getPath(E::LONG_NAME, $cssFile));
-  $content = str_replace('../../../civicrm/civicrm/', Civi::resources()->getUrl('civicrm'), $raw);
+  $content = str_replace(['[civicrm.root]', '[civicrm.ext]'] , [Civi::resources()->getUrl('civicrm'), Civi::resources()->getUrl(E::LONG_NAME)], $raw);
   $mimetype = 'text/css';
 }

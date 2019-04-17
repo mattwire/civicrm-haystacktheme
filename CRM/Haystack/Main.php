@@ -126,7 +126,7 @@ class CRM_Haystack_Main {
       if ($loadFrontend) {
         if (file_exists(E::path("theme/{$theme}/frontend.css"))) {
           CRM_Core_Resources::singleton()
-            ->addStyleFile('haystack', "theme/{$theme}/frontend.css", -50, $region);
+            ->addStyleUrl(\Civi::service('asset_builder')->getUrl('frontend.css'));
         }
       }
     }

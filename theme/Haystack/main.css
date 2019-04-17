@@ -780,7 +780,7 @@ div.crm-container .crm-content label.error
 }
 
 .crm-container div.empowered-by-logo {
-	background: url('../../../civicrm/civicrm/i/civi99.png') no-repeat;
+	background: url('[civicrm.root]i/civi99.png') no-repeat;
 	display: block;
 	line-height: 34px;
 	position: absolute;
@@ -853,17 +853,17 @@ div.crm-container .crm-content label.error
 }
 
 .crm-container .crm-form-block .crm-loading-element {
-	background-image: url("../../../civicrm/civicrm/i/loading-E6E6DC.gif");
+	background-image: url("[civicrm.root]i/loading-E6E6DC.gif");
 }
 
 .crm-container .crm-loading-element {
 	padding-left: 30px;
 	height: 30px;
-	background: transparent url("../../../civicrm/civicrm/i/loading.gif") no-repeat 0 0;
+	background: transparent url("[civicrm.root]i/loading.gif") no-repeat 0 0;
 }
 
 .crm-container div div.crm-msg-loading div.icon {
-	background: transparent url("../../../civicrm/civicrm/i/loading-2f2f2e.gif") no-repeat 0 0;
+	background: transparent url("[civicrm.root]i/loading-2f2f2e.gif") no-repeat 0 0;
 }
 
 /*
@@ -1311,11 +1311,11 @@ div.crm-container .crm-content label.error
 }
 
 #crm-container div.remaining {
-	background: url("../../../civicrm/civicrm/i/contribute/pcp_remain.gif");
+	background: url("[civicrm.root]i/contribute/pcp_remain.gif");
 }
 
 #crm-container div.achieved {
-	background: url("../../../civicrm/civicrm/i/contribute/pcp_achieve.gif");
+	background: url("[civicrm.root]i/contribute/pcp_achieve.gif");
 }
 
 #crm-container .honor_roll {
@@ -1336,14 +1336,14 @@ div.crm-container .crm-content label.error
 }
 
 #crm-container .thermometer-fill-wrapper {
-	background: transparent url("../../../civicrm/civicrm/i/contribute/pcp_remain.gif") repeat-y scroll left bottom;
+	background: transparent url("[civicrm.root]i/contribute/pcp_remain.gif") repeat-y scroll left bottom;
 	height: 220px;
 	position: relative;
 	margin: 1em 0 1.5em 0;
 }
 
 #crm-container .thermometer-fill {
-	background: transparent url(../../../civicrm/civicrm/i/contribute/pcp_achieve.gif) repeat-y scroll 0 bottom;
+	background: transparent url([civicrm.root]i/contribute/pcp_achieve.gif) repeat-y scroll 0 bottom;
 	bottom: 0;
 	left: 0;
 	position: absolute;
@@ -1588,7 +1588,7 @@ div.crm-container .crm-content label.error
 }
 .crm-container .crm-hover-button:hover .icon,
 .crm-container .crm-hover-button:active .icon {
-	background-image: url("../../../civicrm/civicrm/i/icons/jquery-ui-2786C2.png");
+	background-image: url("[civicrm.root]i/icons/jquery-ui-2786C2.png");
 }
 .crm-container a.action-item {
 	display: inline;
@@ -1647,7 +1647,7 @@ div.crm-container .crm-content label.error
 	right: 2px;
 	top: 3px;
 	width: 15px;
-	background: url("../../../civicrm/civicrm/i/TreePlus.gif") no-repeat right 1px;
+	background: url("[civicrm.root]i/TreePlus.gif") no-repeat right 1px;
 }
 
 .crm-container .btn-slide-active .panel {
@@ -2046,7 +2046,7 @@ div.crm-container .crm-content label.error
 }
 
 .crm-container .ui-dialog-buttonset .ui-button .ui-icon {
-	background-image: url("../../../civicrm/civicrm/i/icons/jquery-ui-FFFFFF.png");
+	background-image: url("[civicrm.root]i/icons/jquery-ui-FFFFFF.png");
 }
 
 /* No crm-button styling for PayPal Express buttons */
@@ -2119,7 +2119,7 @@ div.crm-container .crm-content label.error
 
 .crm-container .ui-icon,
 .crm-container .icon {
-	background-image: url("../../../civicrm/civicrm/i/icons/jquery-ui-52534D.png")
+	background-image: url("[civicrm.root]i/icons/jquery-ui-52534D.png")
 }
 
 .crm-container .icon {
@@ -2141,7 +2141,7 @@ div.crm-container .crm-content label.error
 .crm-accordion-header .icon {
 	position: relative;
 	top: -2px;
-	background-image: url("../../../civicrm/civicrm/i/icons/jquery-ui-FFFFFF.png");
+	background-image: url("[civicrm.root]i/icons/jquery-ui-FFFFFF.png");
 }
 
 .crm-container span.crm-button .icon {
@@ -2183,7 +2183,7 @@ div.crm-container .crm-content label.error
 }
 
 .crm-container .crm-button-icon {
-	background-image: url("../../../civicrm/civicrm/i/icons/jquery-ui-FFFFFF.png");
+	background-image: url("[civicrm.root]i/icons/jquery-ui-FFFFFF.png");
 	height: 16px;
 	width: 16px;
 	display: block;
@@ -2199,7 +2199,7 @@ div.crm-container .crm-content label.error
 .crm-container .crm-button:hover .icon.ui-icon-trash,
 .crm-container .crm-hover-button:hover .icon.ui-icon-trash,
 .crm-container span:hover > .icon.delete-icon {
-	background-image: url("../../../civicrm/civicrm/i/icons/jquery-ui-8A1F11.png");
+	background-image: url("[civicrm.root]i/icons/jquery-ui-8A1F11.png");
 }
 
 /* Font Awesome */
@@ -2301,7 +2301,7 @@ div.crm-master-accordion-header a.helpicon {
 /* These .crm-icon classes use item_sprites.png */
 
 .crm-container .crm-icon {
-	background-image: url('../../../civicrm/civicrm/i/item_sprites.png');
+	background-image: url('[civicrm.root]i/item_sprites.png');
 	margin: 2px 4px 0 0;
 	text-indent: -10000px;
 	/* for accessibility reason, put the name of the type/subtype in the icon div (it will be hidden and replaced by the icon) */
@@ -2376,7 +2376,7 @@ div.crm-master-accordion-header a.helpicon {
 /* accordion styles */
 .crm-container .crm-accordion-header
 {
-	background-image: url("../../../civicrm/civicrm/i/TreeMinusWhite.gif");
+	background-image: url("[civicrm.root]i/TreeMinusWhite.gif");
 	background-repeat: no-repeat;
 	background-position: 2px center;
 	cursor: pointer;
@@ -2394,7 +2394,7 @@ div.crm-master-accordion-header a.helpicon {
 }
 
 .crm-container .collapsed .crm-accordion-header {
-	background-image: url("../../../civicrm/civicrm/i/TreePlusWhite.gif");
+	background-image: url("[civicrm.root]i/TreePlusWhite.gif");
 }
 
 .crm-container .collapsed .crm-accordion-body,
@@ -2410,14 +2410,14 @@ div.crm-master-accordion-header a.helpicon {
 
 .crm-container .crm-accordion-inner .crm-accordion-header,
 .crm-container .crm-collapsible .collapsible-title {
-	background-image: url("../../../civicrm/civicrm/i/TreeMinus.gif");
+	background-image: url("[civicrm.root]i/TreeMinus.gif");
 	background-color: transparent;
 	color: #3E3E3E;
 }
 
 .crm-container .crm-accordion-inner.collapsed .crm-accordion-header,
 .crm-container .crm-collapsible.collapsed .collapsible-title {
-	background-image: url("../../../civicrm/civicrm/i/TreePlus.gif");
+	background-image: url("[civicrm.root]i/TreePlus.gif");
 }
 
 .crm-container .crm-accordion-wrapper
@@ -2497,7 +2497,7 @@ div.crm-master-accordion-header a.helpicon {
 }
 
 .crm-status-box-outer.status-start {
-	background: #F8FF03 url("../../../civicrm/civicrm/i/animated-overlay.gif");
+	background: #F8FF03 url("[civicrm.root]i/animated-overlay.gif");
 }
 
 .crm-status-box-outer .crm-status-box-inner {
@@ -2654,7 +2654,7 @@ div.crm-master-accordion-header a.helpicon {
 #crm-container div span.privacy-flag
 {
 	background-repeat: no-repeat;
-	background-image: url("../../../civicrm/civicrm/i/stop-icon.png");
+	background-image: url("[civicrm.root]i/stop-icon.png");
 	float: right;
 }
 
@@ -2759,7 +2759,7 @@ div.crm-container form {
 	height: 100%;
 	margin: 0;
 	padding: 0;
-	background: url("../../../civicrm/civicrm/i/loading-overlay.gif") center center no-repeat white;
+	background: url("[civicrm.root]i/loading-overlay.gif") center center no-repeat white;
 	opacity: 0.6;
 	cursor: wait;
 }
@@ -3020,7 +3020,7 @@ tbody.scrollContent tr.alternateRow {
 .crm-container a.sorting,
 .crm-container a.sorting_desc,
 .crm-container a.sorting_asc {
-	background: url("../../../civicrm/civicrm/bower_components/datatables/media/images/sort_both.png") no-repeat left center;
+	background: url("[civicrm.root]bower_components/datatables/media/images/sort_both.png") no-repeat left center;
 	padding-left: 20px;
 }
 .crm-container a.sorting_desc,
@@ -3036,16 +3036,16 @@ tbody.scrollContent tr.alternateRow {
 }
 
 .crm-container table thead a.sorting_asc {
-	background: url("../../../civicrm/civicrm/bower_components/datatables/media/images/sort_asc.png") no-repeat left center;
+	background: url("[civicrm.root]bower_components/datatables/media/images/sort_asc.png") no-repeat left center;
 }
 .crm-container table thead a.sorting_desc {
-	background: url("../../../civicrm/civicrm/bower_components/datatables/media/images/sort_desc.png") no-repeat left center;
+	background: url("[civicrm.root]bower_components/datatables/media/images/sort_desc.png") no-repeat left center;
 }
 .crm-container table thead a.sorting_asc_disabled {
-	background: url("../../../civicrm/civicrm/bower_components/datatables/media/images/sort_asc_disabled.png") no-repeat left center;
+	background: url("[civicrm.root]bower_components/datatables/media/images/sort_asc_disabled.png") no-repeat left center;
 }
 .crm-container table thead a.sorting_desc_disabled {
-	background: url("../../../civicrm/civicrm/bower_components/datatables/media/images/sort_desc_disabled.png") no-repeat left center;
+	background: url("[civicrm.root]bower_components/datatables/media/images/sort_desc_disabled.png") no-repeat left center;
 }
 
 /* Otherwise for some reason we have 2 sort icons */
@@ -3214,7 +3214,7 @@ tbody.scrollContent tr.alternateRow {
 /* deprecated autocomplete styles */
 
 .ac_results {
-	background: transparent url(../../../civicrm/civicrm/i/dropdown-pointer.gif) no-repeat 25px 1px;
+	background: transparent url([civicrm.root]i/dropdown-pointer.gif) no-repeat 25px 1px;
 	padding-top: 5px;
 	border: none;
 	text-align: left;
@@ -3254,11 +3254,11 @@ tbody.scrollContent tr.alternateRow {
 .crm-container .ac_results li .icon,
 .crm-container .ac_results li a .icon,
 .crm-container .ac_results li a:visited .icon {
-	background-image: url(../../../civicrm/civicrm/i/icons/jquery-ui-FFFFFF.png);
+	background-image: url([civicrm.root]i/icons/jquery-ui-FFFFFF.png);
 }
 
 .crm-container .ac_results li a:hover .icon {
-	background-image: url(../../../civicrm/civicrm/i/icons/jquery-ui-3E3E3E.png);
+	background-image: url([civicrm.root]i/icons/jquery-ui-3E3E3E.png);
 }
 
 .ac_results li:hover,
@@ -3274,7 +3274,7 @@ tbody.scrollContent tr.alternateRow {
 /* loader autocomplete */
 
 .crm-container .ui-autocomplete-loading {
-	background: white url('../../../civicrm/civicrm/i/loading.gif') no-repeat right center;
+	background: white url('[civicrm.root]i/loading.gif') no-repeat right center;
 }
 
 /* select2 */
@@ -3293,7 +3293,7 @@ tbody.scrollContent tr.alternateRow {
 
 /* Add arrow icon to multi-selects */
 .crm-container .select2-container-multi .select2-choices:before {
-	background: url("../../../civicrm/civicrm/bower_components/select2/select2.png") no-repeat scroll 0 -4px;
+	background: url("[civicrm.root]bower_components/select2/select2.png") no-repeat scroll 0 -4px;
 	content: "";
 	display: block;
 	height: 15px;
@@ -3309,7 +3309,7 @@ tbody.scrollContent tr.alternateRow {
 }
 .crm-container .select2-container-multi.loading .select2-choices:before,
 .crm-container .select2-container.loading .select2-choice .select2-arrow b {
-	background: url('../../../civicrm/civicrm/i/loading.gif') no-repeat center center;
+	background: url('[civicrm.root]i/loading.gif') no-repeat center center;
 }
 /* Reduce select2 size to match other inputs */
 .crm-container .select2-container-multi .select2-choices {
@@ -3440,7 +3440,7 @@ span.crm-select-item-color {
 
 /* jQuery UI styles */
 .crm-container .ui-progressbar-value {
-	background-image: url("../../../civicrm/civicrm/packages/jquery/css/images/pbar-ani.gif");
+	background-image: url("[civicrm.root]packages/jquery/css/images/pbar-ani.gif");
 }
 
 .crm-container.ui-dialog {
@@ -3451,14 +3451,14 @@ span.crm-select-item-color {
 	content: " ";
 	width: 16px;
 	height: 16px;
-	background: url("../../../civicrm/civicrm/i/icons/jquery-ui-52534D.png") no-repeat -80px -224px;
+	background: url("[civicrm.root]i/icons/jquery-ui-52534D.png") no-repeat -80px -224px;
 	position: absolute;
 	bottom: 0;
 	right: 0;
 }
 .crm-container .ui-dialog-title
 {
-	background: url("../../../civicrm/civicrm/i/item_sprites.png") no-repeat scroll -79px -47px;
+	background: url("[civicrm.root]i/item_sprites.png") no-repeat scroll -79px -47px;
 	margin-left: -5px;
 	padding-left: 25px;
 	font-size: 16px;
@@ -3522,7 +3522,7 @@ span.crm-select-item-color {
 	margin: 2px 2px 3px 2px;
 	cursor: pointer;
 	background-position: -66px -114px;
-	background-image: url("../../../civicrm/civicrm/i/icons/jquery-ui-3E3E3E.gif");
+	background-image: url("[civicrm.root]i/icons/jquery-ui-3E3E3E.gif");
 }
 
 .crm-container span.batch-valid {
@@ -3723,7 +3723,7 @@ span.crm-select-item-color {
 .crm-container span.collapsed,
 .crm-container a.collapsed,
 .crm-container .crm-expand-row {
-	background: url("../../../civicrm/civicrm/i/TreePlus.gif") no-repeat 0 0;
+	background: url("[civicrm.root]i/TreePlus.gif") no-repeat 0 0;
 	padding-left: 19px;
 	cursor: pointer;
 	text-decoration: none;
@@ -3731,7 +3731,7 @@ span.crm-select-item-color {
 
 .crm-container span.expanded,
 .crm-container a.expanded {
-	background: url("../../../civicrm/civicrm/i/TreeMinus.gif") no-repeat 0 0;
+	background: url("[civicrm.root]i/TreeMinus.gif") no-repeat 0 0;
 	padding-left: 19px;
 	cursor: pointer;
 }
@@ -3879,7 +3879,7 @@ span.crm-select-item-color {
 /*
 .crm-container div.ui-notify-message div.icon,
 .crm-status-icon {
-	background: transparent url("../../../civicrm/civicrm/i/message-icons.png") no-repeat 0 0;
+	background: transparent url("[civicrm.root]i/message-icons.png") no-repeat 0 0;
 	width: 24px;
 	height: 24px;
 	margin-right: 6px;
@@ -3911,7 +3911,7 @@ span.crm-status-icon {
 
 /* block-ui */
 .crm-container .blockUI.blockOverlay {
-	background: url("../../../civicrm/civicrm/i/loading-overlay.gif") center center no-repeat white !important;
+	background: url("[civicrm.root]i/loading-overlay.gif") center center no-repeat white !important;
 }
 
 .crm-container table.mergecontact thead th {
