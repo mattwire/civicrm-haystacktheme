@@ -76,7 +76,7 @@ class CRM_Haystack_Main {
       }
 
       CRM_Core_Resources::singleton()
-      ->addStyleUrl(\Civi::service('asset_builder')->getUrl('main.css'));
+        ->addStyleUrl(\Civi::service('asset_builder')->getUrl('main.css'));
 
       if ((boolean) CRM_Haystack_Settings::getValue('responsive_datatables')) {
         // If we want responsive datatables?
@@ -91,6 +91,43 @@ class CRM_Haystack_Main {
           ->addStyleFile('haystack', 'css/responsivetables.css', -50, $region);
         CRM_Core_Resources::singleton()
           ->addScriptFile('haystack', 'js/responsivetables.js', -50, $region);
+      }
+
+      switch ((int)CRM_Haystack_Settings::getValue('theme_frontend')) {
+        case 0:
+          // Never
+          $loadFrontend = FALSE;
+          break;
+
+        case 1:
+          // Only frontend
+          if (!$this->isAdmin()) {
+            $loadFrontend = TRUE;
+          }
+          break;
+
+        case 2:
+          // Only Backend
+          if ($this->isAdmin()) {
+            $loadFrontend = TRUE;
+          }
+          break;
+
+        case 3:
+          // Frontend and Backend
+          $loadFrontend = TRUE;
+          break;
+
+        default:
+          $loadFrontend = TRUE;
+
+      }
+
+      if ($loadFrontend) {
+        if (file_exists(E::path("theme/{$theme}/frontend.css"))) {
+          CRM_Core_Resources::singleton()
+            ->addStyleFile('haystack', "theme/{$theme}/frontend.css", -50, $region);
+        }
       }
     }
   }

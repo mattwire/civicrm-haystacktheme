@@ -80,6 +80,24 @@ return [
     'is_domain' => 1,
     'is_contact' => 0,
     'description' => 'Preferred theme',
-    'html_attributes' => [],
+    'html_attributes' => [
+      'size' => 80,
+    ],
+  ],
+  'haystack_theme_frontend' => [
+    'admin_group' => 'haystack_theme',
+    'group_name' => 'Haystack theme settings',
+    'group' => 'haystack',
+    'name' => 'haystack_theme_frontend',
+    'type' => 'Integer',
+    'html_type' => 'Select',
+    'default' => 3,
+    'add' => '5.0',
+    'is_domain' => 1,
+    'is_contact' => 0,
+    'description' => 'When should the CiviCRM frontend theme be loaded?',
+    'html_attributes' => [
+      'size' => 80,
+    ],
   ],
 ];
