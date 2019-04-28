@@ -6,7 +6,7 @@ Misc fixes added by MJW in the CiviCRM Haystack extension
 /* If using a bootstrap theme ensure that labels are display properly in TD elements. */
 #crm-container td.label {
   white-space: normal;
-  display: inline-block;
+  display: table-cell;
 }
 
 /* For reports, make sure the text is visible */
