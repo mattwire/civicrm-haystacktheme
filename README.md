@@ -14,7 +14,7 @@ Go to Administer->Customize Data and Screens->Haystack theme settings to configu
 ## Requirements
 
 * PHP v7.0+
-* CiviCRM 5.12
+* CiviCRM 5.13
 
 ## Licensing
 The extension is licensed under [AGPL-3.0](LICENSE.txt).
@@ -53,7 +53,3 @@ cv en haystack
 
 ## Known Issues
 1. Slow to load haystack-civicrm-shared.css when in debug mode because of assetbuilder.  Maybe extract the "paths" into their own css file and just pass that one through assetbuilder?
-
-## Nasty hacks / overrides that should be fixed in core
-1. civicrm_case_dashboard_hack.js - removes the td label class.
-2. civicrm_contribute_dashboard_hack.js - removes the td label class.

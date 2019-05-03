@@ -19,7 +19,7 @@ function haystack_civicrm_config(&$config) {
   Civi::dispatcher()->addListener('hook_civicrm_coreResourceList', 'haystack_symfony_civicrm_coreResourceList', -100);
   Civi::dispatcher()->addListener('hook_civicrm_alterContent', 'haystack_symfony_civicrm_alterContent', -100);
   Civi::dispatcher()->addListener('hook_civicrm_buildForm', 'haystack_symfony_civicrm_buildForm', -100);
-  //Civi::service('dispatcher')->addListener('hook_civicrm_pageRun', 'haystack_symfony_civicrm_pageRun', -100);
+  Civi::dispatcher()->addListener('hook_civicrm_pageRun', 'haystack_symfony_civicrm_pageRun', -100);
 
 
   // For Wordpress we need to register hooks to add css to frontend
@@ -185,13 +185,18 @@ function haystack_civicrm_navigationMenu(&$menu) {
  * Implements hook_civicrm_coreResourceList() via Symfony hook system.
  */
 function haystack_symfony_civicrm_coreResourceList($event, $hook) {
-  // Extract args for this hook
-  list($items, $region) = $event->getHookValues();
+  foreach ($event->list as $key => $value) {
+    if ($value == 'js/crm.ajax.js') {
+      // We replace this because we need to modify the way it adds buttons to an ajax form in CiviCRM
+      $event->list[$key] = E::url('js/crm.ajax.js');
+      break;
+    }
+  }
 
-  if ($region == 'html-header') {
+  if ($event->region == 'html-header') {
     $main = new CRM_Haystack_Main();
     $main->resources_disable();
-    $main->resources_enable($region);
+    $main->resources_enable($event->region);
   }
 }
 
@@ -201,9 +206,24 @@ function haystack_wp_resources() {
     $main->resources_enable('html-header');
 }
 
-function haystack_symfony_civicrm_buildForm( $event, $hook ) {
-  // Extract args for this hook
-  list($formName) = $event->getHookValues();
+function haystack_symfony_civicrm_buildForm($event, $hook) {
+  $event->form->assign('showPrintLink', (boolean)CRM_Haystack_Settings::getValue('display_printlink'));
+
+  switch ($event->formName) {
+    case 'CRM_Event_Form_Registration_ThankYou':
+      $event->form->assign('showIcalLink', (boolean) CRM_Haystack_Settings::getValue('display_icallink'));
+      break;
+
+  }
+}
+
+function haystack_symfony_civicrm_pageRun($event, $hook) {
+  switch ($event->page->getVar('_name')) {
+    case 'CRM_Event_Form_Registration_ThankYou':
+      $event->page->assign('showIcalLink', (boolean) CRM_Haystack_Settings::getValue('display_icallink'));
+    break;
+
+  }
 }
 
 function haystack_symfony_civicrm_alterContent($event, $hook) {

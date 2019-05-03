@@ -1,46 +1,44 @@
 /* Styles for credit card payment logos */
 .crm-container .credit_card_type-section .crm-credit_card_type-icons a {
-  display: block;
-  float: left;
-  width: 50px;
-  height: 30px;
-  background: url('[civicrm.ext]i/creditcard-icons.png') no-repeat 0 0 transparent;
-  text-indent: -20000px;
-  margin-right: 10px;
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-  border-radius: 3px;
-  border: 1px solid #FFFFFF;
+    display: block;
+    float: left;
+    width: 50px;
+    height: 30px;
+    background: url('[civicrm.ext]i/creditcard-icons.png') no-repeat 0 0 transparent;
+    text-indent: -20000px;
+    margin-right: 10px;
+    box-shadow: none;
+    border-radius: 1px;
+    border: 1px solid #aaa;
+    margin: 3px;
 }
-
 .crm-container .credit_card_type-section .crm-credit_card_type-icons .crm-credit_card_type-icon-visa {
-  background-position: -50px 0;
+    background-position: -52px -1px;
 }
-
 .crm-container .credit_card_type-section .crm-credit_card_type-icons .crm-credit_card_type-icon-mastercard {
-  background-position: -100px 0;
+    background-position: -100px -1px;
 }
-
 .crm-container .credit_card_type-section .crm-credit_card_type-icons .crm-credit_card_type-icon-amex {
-  background-position: -150px 0;
+    background-position: -150px -1px;
 }
-
 .crm-container .credit_card_type-section .crm-credit_card_type-icons .crm-credit_card_type-icon-discover {
-  background-position: -200px 0;
+    background-position: -200px 0;
+    width: 47px;
+    border: 0px solid transparent;
 }
-
 .crm-container .credit_card_type-section .crm-credit_card_type-icons .crm-credit_card_type-icon-jcb {
-  background-position: -250px 0;
+    background-position: -250px -1px;
 }
-
 .crm-container .credit_card_type-section .crm-credit_card_type-icons .crm-credit_card_type-icon-unionpay {
-  background-position: -300px 0;
+    background-position: -300px -1px;
 }
-
 .crm-container .cvv2-icon {
-  display: inline-block;
-  width: 50px;
-  height: 30px;
-  background: url('[civicrm.ext]i/creditcard-icons.png') no-repeat 0 0 transparent;
+    display: inline-block;
+    width: 48px;
+    height: 28px;
+    background: url('[civicrm.ext]i/creditcard-icons.png') no-repeat 0 0 transparent;
+    top: 10px;
+    position: relative;
 }
 
 /* Avoid weird border around the images (some themes will add a border around images) */
@@ -57,16 +55,14 @@
 #crm-container.crm-public input[type="text"],
 #crm-container.crm-public input[type="password"],
 #crm-container.crm-public input[type="email"],
+#crm-container.crm-public input.ui-autocomplete-input,
 #crm-container.crm-public select {
-  padding: 5px;
-  border-radius: 3px;
+  padding: 6px 9px;
+  border-radius: 0;
   vertical-align: middle;
   max-width: 100%;
-}
-
-#crm-container.crm-public .label,
-#crm-container.crm-public .price-field-amount {
-  padding-top: 6px;
+  border: 1px solid #ccc;
+  margin-right: 6px;
 }
 
 .crm-container.crm-public .select2-container,
@@ -91,20 +87,6 @@
 }
 .crm-container.crm-public .select2-container-multi .select2-choices:before {
   top: 9px;
-}
-
-.crm-public .crm-profile-view .content {
-  padding-top: 6px;
-}
-
-#crm-container.crm-public .calc-value,
-#crm-container.crm-public .content {
-  padding-top: 6px;
-}
-
-#crm-container.crm-public .crm-section,
-.crm-section {
-  margin-bottom: 0;
 }
 
 #crm-container.crm-public #crm-submit-buttons {
@@ -214,29 +196,12 @@
   cursor: pointer;
 }
 
-#crm-container.crm-public .price-set-row .crm-price-amount-amount {
-  min-width: 2em;
-  color: #333333;
+#crm-container.crm-public .price-set-row label {
+  margin-left: 5px;
 }
-
-#crm-container.crm-public .price-set-row .crm-price-amount-label {
-  color: #444444;
-  font-weight: bold;
-}
-
-#crm-container.crm-public .price-set-row .highlight label {
-  color: #000000;
-  font-weight: bold;
-}
-
-#crm-container.crm-public .price-set-row .highlight .crm-price-amount-label {
-  color: #222222;
-}
-
 #crm-container.crm-public .price-set-option-content > tt {
   display: none;
 }
-
 #crm-container .sold-out-option,
 #crm-container .price-set-row span.sold-out-option .crm-price-amount-label,
 #crm-container .price-set-row span.sold-out-option .crm-price-amount-amount {
@@ -244,11 +209,14 @@
   font-weight: normal !important;
   color: #666 !important;
 }
-
+.crm-container #pricevalue {
+    display: inline-block !important;
+    font-weight: bold;
+    font-size: 15px;
+}
 .crm-container .strikethrough {
   text-decoration: line-through;
 }
-
 .crm-container input.ng-invalid.ng-dirty,
 .crm-container select.ng-invalid.ng-dirty,
 .crm-container textarea.ng-invalid.ng-dirty {
@@ -261,4 +229,76 @@
 .crm-container select.ng-valid,
 .crm-container select.ng-pristine{
   border: 1px solid #666;
+}
+.crm-container .crm-section {
+    margin: 5px 0 15px;
+}
+.select2-drop-mask,
+.select2-container .select2-choice {
+    box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+}
+
+/* Buttons */
+
+/* Theme specific button styling */
+
+.crm-container span.crm-i-button input[type="submit"],
+a.crm-register-button,
+.civicrm-event-attend a{
+  background: #efefef;
+  border: 1px solid #ddd;
+  padding: 8px 12px;
+  color: #666;
+}
+.crm-container span.crm-i-button input[type="submit"]:hover,
+.crm-container span.crm-i-button input[type="submit"]:focus,
+a.crm-register-button:hover,
+a.crm-register-button:focus,
+.civicrm-event-attend a:hover,
+.civicrm-event-attend a:focus {
+  background: #ddd;
+  color: #888;
+}
+
+/* icon handling for span button classes */
+
+.crm-container span.crm-i-button input[type="submit"] {
+    padding: 8px 12px 8px 32px;
+    margin-left: -30px;
+}
+.crm-container span.crm-i-button i.crm-i {
+    margin-left: 10px;
+    position: relative;
+}
+.crm-container .crm-button-type-next {
+    float: right;
+}
+
+
+/* Bootstrap Resets */
+
+.crm-container .crm-section .label,
+.crm-container .crm-section label {
+    color: inherit;
+    font-size: inherit;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+}
+.crm-container legend {
+    width: auto;
+    color: inherit;
+    font-weight: bold;
+    line-height: inherit;
+    margin: 0;
+    font-size: 20px;
+    padding: 0 3px;
+}
+.crm-container fieldset {
+    margin: 10px 0 15px;
+}
+abbr[title] {
+    border-bottom: 0 solid transparent;
 }
