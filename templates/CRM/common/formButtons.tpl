@@ -61,7 +61,6 @@
         {/if}
           {$iconDisp}
           {$value}
-        </span>
       </button>
     {/if}
   {/foreach}
