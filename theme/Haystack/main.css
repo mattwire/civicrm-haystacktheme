@@ -4823,6 +4823,6 @@ body #crm-container div.crm-summary-row div.crm-content
 }
 
 /* Full width summary on "Manage Cases" */
-table.report.crm-entity.case-summary {
+#crm-container table.report.case-summary {
 	width: 100%;
 }
