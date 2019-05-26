@@ -4821,3 +4821,8 @@ body #crm-container div.crm-summary-row div.crm-content
 .crm-container table.crm-info-panel td.label {
 	display: table-cell;
 }
+
+/* Full width summary on "Manage Cases" */
+table.report.crm-entity.case-summary {
+	width: 100%;
+}
