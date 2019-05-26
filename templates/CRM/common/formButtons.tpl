@@ -30,7 +30,15 @@
 {crmRegion name='form-buttons'}
   {if $linkButtons}
     {foreach from=$linkButtons item=linkButton}
-      <a class="button" href="{crmURL p=$linkButton.url q=$linkButton.qs}" accesskey="{$linkButton.accessKey}"><span><i class="crm-i {$linkButton.icon}"></i> {$linkButton.name}</span></a>
+      {if $linkButton.accesskey}
+        {capture assign=accessKey}accesskey="{$linkButton.accessKey}"{/capture}
+      {else}{capture assign=accessKey}{/capture}
+      {/if}
+      {if $linkButton.icon}
+        {capture assign=icon}<i class="crm-i {$linkButton.icon}"></i> {/capture}
+      {else}{capture assign=icon}{/capture}
+      {/if}
+      <a class="button" href="{crmURL p=$linkButton.url q=$linkButton.qs}" {$accessKey} {$linkButton.extra}><span>{$icon}{$linkButton.name}</span></a>
     {/foreach}
   {/if}
 
@@ -45,11 +53,12 @@
       {crmGetAttribute html=$html attr='name' assign='name'}
       {crmGetAttribute html=$html attr='value' assign='value'}
       {crmGetAttribute html=$html attr='disabled' assign='disabled'}
+      {crmGetAttribute html=$html attr='onclick' assign='onclick'}
       {if $key|substr:-6 EQ 'cancel'}
         {capture assign=class}cancel{/capture}
         {capture assign=type}button{/capture}
       {/if}
-      <button type="{$type}" name="{$name}" data-form-name="{$form.formName}" {$disabled} class="crm-button button {$class}">
+      <button type="{$type}" name="{$name}" data-form-name="{$form.formName}" {$disabled} class="crm-button button {$class}" {$onclick}>
         {crmGetAttribute html=$html attr='crm-icon' assign='icon'}
         {capture assign=iconPrefix}{$icon|truncate:3:"":true}{/capture}
         {if $icon && $iconPrefix eq 'fa-'}
