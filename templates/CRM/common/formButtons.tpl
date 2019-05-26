@@ -38,7 +38,11 @@
       {capture assign=icon}<i class="crm-i {$linkButton.icon}"></i> {/capture}
     {else}{capture assign=icon}{/capture}
     {/if}
-    <a class="button" href="{crmURL p=$linkButton.url q=$linkButton.qs}" {$accessKey} {$linkButton.extra}><span>{$icon}{$linkButton.name}</span></a>
+    {if $linkButton.ref}
+      {capture assign=linkname}name="{$linkButton.ref}"{/capture}
+    {else}{capture assign=linkname}name="{$linkButton.name}"{/capture}
+    {/if}
+    <a class="button" {$linkname} href="{crmURL p=$linkButton.url q=$linkButton.qs}" {$accessKey} {$linkButton.extra}><span>{$icon}{$linkButton.title}</span></a>
   {/foreach}
 {/if}
 
