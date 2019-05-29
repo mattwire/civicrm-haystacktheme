@@ -20,6 +20,8 @@ class CRM_Haystack_Main {
    */
   public function resources_disable() {
 
+    // Clear any custom CSS URL that is configured.
+    Civi::settings()->set('customCSSURL', NULL);
     // Maybe disable core stylesheet.
     if ((boolean) CRM_Haystack_Settings::getValue('disable_civicrm_core_css')) {
       Civi::settings()->set('disable_core_css', TRUE);

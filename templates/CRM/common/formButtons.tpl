@@ -60,7 +60,6 @@
     {crmGetAttribute html=$html attr='onclick' assign='onclick'}
     {if $key|substr:-6 EQ 'cancel'}
       {capture assign=class}cancel{/capture}
-      {capture assign=type}button{/capture}
     {/if}
     <button type="{$type}" name="{$name}" data-form-name="{$form.formName}" {$disabled} class="crm-button button {$class}" {$onclick}>
       {crmGetAttribute html=$html attr='crm-icon' assign='icon'}

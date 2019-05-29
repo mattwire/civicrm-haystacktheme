@@ -89,6 +89,8 @@ function haystack_civicrm_enable() {
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_disable
  */
 function haystack_civicrm_disable() {
+  // Reset to a good default state
+  Civi::settings()->set('disable_core_css', FALSE);
   _haystack_civix_civicrm_disable();
 }
 
