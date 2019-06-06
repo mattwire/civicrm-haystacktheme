@@ -302,3 +302,22 @@ a.crm-register-button:focus,
 abbr[title] {
     border-bottom: 0 solid transparent;
 }
+
+/* For public pages make inputs 100% width, bigger buttons */
+@media screen and (max-width: 782px) {
+  #crm-container.crm-public input[type="text"] {
+    width: 100%;
+  }
+
+  .crm-container.crm-public .select2-container {
+    width: 100% !important;
+  }
+
+  #crm-container.crm-public #crm-submit-buttons button,
+  #crm-container.crm-public #crm-submit-buttons input[type="button"],
+  #crm-container.crm-public #crm-submit-buttons input[type="reset"],
+  #crm-container.crm-public #crm-submit-buttons input[type="submit"] {
+    width: 100%;
+    font-size: 20px;
+  }
+}
