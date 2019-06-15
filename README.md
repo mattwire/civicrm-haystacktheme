@@ -4,7 +4,7 @@ This provides a simple, modern theme for CiviCRM (based on the theme supplied in
 
 ![Screenshot](/images/contactsummary.png)
 
-Based on https://github.com/christianwach/civicrm-admin-utilities/commit/5fbc85b77ff28847866eaa51acf318333bb3acf6
+Updated to https://github.com/christianwach/civicrm-admin-utilities/commit/35d19f21de8ef7e4287efec579f80b86fd759613
 
 Go to Administer->Customize Data and Screens->Haystack theme settings to configure:
 * Enable responsive datatables.

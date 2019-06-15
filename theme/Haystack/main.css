@@ -441,6 +441,7 @@ div.crm-container .crm-content label.error
 	float: left;
 	width: 17%;
 	text-align: right;
+	white-space: unset; /* cancel bootstrap no-wrap */
 }
 
 .crm-container .label-left .label {
@@ -3174,7 +3175,8 @@ tbody.scrollContent tr.alternateRow {
 .crm-container input.crm-form-submit,
 .crm-container input[type=button],
 .crm-container button.crm-button,
-.crm-container button.crmMailing-btn-primary.crm-button
+.crm-container button.crmMailing-btn-primary.crm-button,
+.crm-container a.button.crmMailing-submit-button
 {
 	display: inline-block;
 	text-decoration: none;
@@ -3195,7 +3197,25 @@ tbody.scrollContent tr.alternateRow {
 	box-shadow: 0 1px 0 #006799;
 	color: #fff;
 	text-decoration: none;
-	text-shadow: 0 -1px 1px #006799, 1px 0 1px #006799, 0 1px 1px #006799, -1px 0 1px #006799
+	text-shadow: 0 -1px 1px #006799, 1px 0 1px #006799, 0 1px 1px #006799, -1px 0 1px #006799;
+}
+
+.crm-container a.button:hover,
+.crm-container a.button:focus
+.crm-container input.crm-form-submit:hover,
+.crm-container input.crm-form-submit:focus,
+.crm-container input[type=button]:hover,
+.crm-container input[type=button]:focus,
+.crm-container button.crm-button:hover,
+.crm-container button.crm-button:focus,
+.crm-container button.crmMailing-btn-primary.crm-button:hover,
+.crm-container button.crmMailing-btn-primary.crm-button:focus,
+.crm-container a.button.crmMailing-submit-button:hover,
+.crm-container a.button.crmMailing-submit-button:focus
+{
+	background: #008ec2;
+	border-color: #006799;
+	color: #fff;
 }
 
 .crm-container button.crm-button,
@@ -3472,7 +3492,7 @@ span.crm-select-item-color {
 	background-image: none;
 	border: 1px none;
 	color: inherit;
-	font-size: 1.2em;
+	font-size: 16px;
 }
 .crm-container .ui-dialog-titlebar .ui-button:hover {
 	background-color: #cdcdcd;
@@ -4076,6 +4096,16 @@ body #crm-container .crm-edit-ready .crm-inline-edit:hover .crm-edit-help
 	background-color: #0085ba;
 }
 
+body #crm-container .crm-edit-ready .crm-summary-block .crm-inline-edit:hover .crm-edit-help:hover,
+body #crm-container .crm-edit-ready .crm-summary-block .crm-inline-edit:hover .crm-edit-help:focus,
+body #crm-container .crm-edit-ready .crm-inline-edit:hover .crm-edit-help:hover,
+body #crm-container .crm-edit-ready .crm-inline-edit:hover .crm-edit-help:focus
+{
+	background: #008ec2;
+	border-color: #006799;
+	color: #fff;
+}
+
 #contact-summary-relationship-tab > .label.font-red
 {
 	font-size: 1.3em;
@@ -4410,15 +4440,34 @@ Upgrade screen overrides
 */
 
 /* Give screen room to breathe */
-body.civicrm-upgrade #wpbody-content > h2 {
+body.civicrm-upgrade #wpbody-content > h2
+{
 	margin-top: 2em;
 }
 
-/* Remove colour scheme from Upgrade success screen */
-body.civicrm-upgrade #wpbody-content > .crm-container {
+/* Remove colour scheme from Upgrade screens */
+body #wpbody-content > .crm-container:not(#crm-container),
+body.civicrm-upgrade #wpbody-content > .crm-container:not(#crm-container)
+{
 	background: transparent !important;
-	padding: 0 !important;
+	padding: 0 20px 0 0 !important;
 	border: none !important;
+}
+
+/* Remove colour scheme from Upgrade screens */
+body #wpbody-content > .crm-container:not(#crm-container) > form > p:first-child
+{
+	font-size: 130%;
+	font-weight: bold;
+	line-height: 1.5;
+	/* text-transform: uppercase; */
+	color: #23282d;
+}
+
+/* Fix link colour on Upgrade screens */
+body #wpbody-content > .crm-container:not(#crm-container) > form > div a
+{
+	color: #0073aa !important;
 }
 
 /* Fix appearance of Upgrade button */
@@ -4451,11 +4500,34 @@ body.civicrm-upgrade #wpbody-content > .crm-container {
 .crm-container > form > a.button.cancel
 {
 	margin-right: 10px;
+	color: #555;
+	border-color: #cccccc;
+	background: #f7f7f7;
+	box-shadow: 0 1px 0 #cccccc;
+	vertical-align: top;
+	text-shadow: none;
 }
 
-.crm-container > form > p > .crm-status-icon.info
+.crm-container > form > a.button.cancel:hover,
+.crm-container > form > a.button.cancel:focus,
+.crm-container > form > a.button.cancel:active
+{
+	background: #fafafa;
+	border-color: #999;
+	color: #23282d;
+}
+
+/* Align icons */
+.crm-container > form > p > .crm-status-icon.info,
+.crm-container > form > div > .crm-status-icon
 {
 	vertical-align: middle;
+}
+
+/* Warning icon needs space */
+.crm-container > form > div > .crm-status-icon
+{
+	margin-bottom: 6px;
 }
 
 
@@ -4622,6 +4694,7 @@ jQuery UI overrides
 	border-left: none;
 	border-right: none;
 	border: none;
+	height: auto
 }
 
 .crm-container.ui-dialog.ui-widget-content
@@ -4658,6 +4731,14 @@ jQuery UI overrides
 	color: #fff;
 	text-decoration: none;
 	text-shadow: 0 -1px 1px #006799, 1px 0 1px #006799, 0 1px 1px #006799, -1px 0 1px #006799;
+}
+
+.ui-dialog .ui-dialog-buttonpane button:hover,
+.ui-dialog .ui-dialog-buttonpane button:focus
+{
+	background: #008ec2;
+	border-color: #006799;
+	color: #fff;
 }
 
 .ui-dialog .ui-dialog-buttonpane button .ui-icon[class*=" fa-"]
@@ -4779,11 +4860,6 @@ CiviCRM API v4 support
 Contact Layout Editor extension support
 --------------------------------------------------------------------------------
 */
-
-#bootstrap-theme #contactLayoutEditor .panel-heading .btn
-{
-	margin-top: 9px;
-}
 
 body #crm-container div.crm-summary-row div.crm-content
 {
