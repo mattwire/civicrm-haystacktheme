@@ -54,7 +54,7 @@ class CRM_Haystack_Main {
    *
    * @param $region
    */
-  public function resources_enable($region) {
+  public function resources_enable($region, $cmsOnly = FALSE) {
     // Load a cms specific css file
     if ($region == 'html-header') {
       switch (strtolower(CRM_Core_Config::singleton()->userFramework)) {
@@ -80,19 +80,22 @@ class CRM_Haystack_Main {
       CRM_Core_Resources::singleton()
         ->addStyleUrl(\Civi::service('asset_builder')->getUrl('main.css'));
 
-      if ((boolean) CRM_Haystack_Settings::getValue('responsive_datatables')) {
-        // If we want responsive datatables?
-        CRM_Core_Resources::singleton()
-          ->addStyleFile('haystack', 'css/responsive.dataTables.min.css', -50, $region);
-        CRM_Core_Resources::singleton()
-          ->addScriptFile('haystack', 'js/dataTables.responsive.min.js', -50, $region);
-      }
-      if ((boolean) CRM_Haystack_Settings::getValue('responsive_tables')) {
-        // If we want responsive tables?
-        CRM_Core_Resources::singleton()
-          ->addStyleFile('haystack', 'css/responsivetables.css', -50, $region);
-        CRM_Core_Resources::singleton()
-          ->addScriptFile('haystack', 'js/responsivetables.js', -50, $region);
+      // Responsive datatables only makes sense for CiviCRM admin interfaces
+      if (!$cmsOnly && self::isAdmin()) {
+        if ((boolean) CRM_Haystack_Settings::getValue('responsive_datatables')) {
+          // If we want responsive datatables?
+          CRM_Core_Resources::singleton()
+            ->addStyleFile('haystack', 'css/responsive.dataTables.min.css', -50, $region);
+          CRM_Core_Resources::singleton()
+            ->addScriptFile('haystack', 'js/dataTables.responsive.min.js', -50, $region);
+        }
+        if ((boolean) CRM_Haystack_Settings::getValue('responsive_tables')) {
+          // If we want responsive tables?
+          CRM_Core_Resources::singleton()
+            ->addStyleFile('haystack', 'css/responsivetables.css', -50, $region);
+          CRM_Core_Resources::singleton()
+            ->addScriptFile('haystack', 'js/responsivetables.js', -50, $region);
+        }
       }
 
       switch ((int)CRM_Haystack_Settings::getValue('theme_frontend')) {

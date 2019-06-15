@@ -205,7 +205,7 @@ function haystack_symfony_civicrm_coreResourceList($event, $hook) {
 function haystack_wp_resources() {
     $main = new CRM_Haystack_Main();
     $main->resources_disable();
-    $main->resources_enable('html-header');
+    $main->resources_enable('html-header', TRUE);
 }
 
 function haystack_symfony_civicrm_buildForm($event, $hook) {
