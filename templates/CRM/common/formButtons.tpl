@@ -58,6 +58,7 @@
     {crmGetAttribute html=$html attr='value' assign='value'}
     {crmGetAttribute html=$html attr='disabled' assign='disabled'}
     {crmGetAttribute html=$html attr='onclick' assign='onclick'}
+    {crmGetAttribute html=$html attr='class' assign='class'}
     {if $key|substr:-6 EQ 'cancel'}
       {capture assign=class}cancel{/capture}
     {/if}
