@@ -62,7 +62,7 @@
     {if $key|substr:-6 EQ 'cancel'}
       {capture assign=class}cancel{/capture}
     {/if}
-    <button type="{$type}" name="{$name}" data-form-name="{$form.formName}" {$disabled} class="crm-button button {$class}" {$onclick}>
+    <button type="{$type}" name="{$name}" data-form-name="{$form.formName}" {$disabled} class="crm-button {$class}" {$onclick}>
       {crmGetAttribute html=$html attr='crm-icon' assign='icon'}
       {capture assign=iconPrefix}{$icon|truncate:3:"":true}{/capture}
       {if $icon && $iconPrefix eq 'fa-'}

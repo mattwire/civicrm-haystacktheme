@@ -187,18 +187,24 @@ function haystack_civicrm_navigationMenu(&$menu) {
  * Implements hook_civicrm_coreResourceList() via Symfony hook system.
  */
 function haystack_symfony_civicrm_coreResourceList($event, $hook) {
+  if ($event->region == 'html-header') {
+    $main = new CRM_Haystack_Main();
+    $main->resources_disable();
+    $main->resources_enable($event->region);
+  }
+
+  if (version_compare(\CRM_Utils_System::version(), '5.16.alpha1', '>=')) {
+    // https://github.com/civicrm/civicrm-core/pull/14474
+    // and https://github.com/civicrm/civicrm-core/pull/14136
+    // were added in 5.16. #14136 adds support for "button" elements as source for ajax popups which is why we were overriding crm.ajax.js previously.
+    return;
+  }
   foreach ($event->list as $key => $value) {
     if ($value == 'js/crm.ajax.js') {
       // We replace this because we need to modify the way it adds buttons to an ajax form in CiviCRM
       $event->list[$key] = E::url('js/crm.ajax.js');
       break;
     }
-  }
-
-  if ($event->region == 'html-header') {
-    $main = new CRM_Haystack_Main();
-    $main->resources_disable();
-    $main->resources_enable($event->region);
   }
 }
 
