@@ -53,27 +53,27 @@
     {else}
       {assign var='html' value=$form.buttons.$key.html}
     {/if}
-    {crmGetAttribute html=$html attr='type' assign='type'}
-    {crmGetAttribute html=$html attr='name' assign='name'}
-    {crmGetAttribute html=$html attr='value' assign='value'}
-    {crmGetAttribute html=$html attr='disabled' assign='disabled'}
-    {crmGetAttribute html=$html attr='onclick' assign='onclick'}
-    {crmGetAttribute html=$html attr='class' assign='class'}
-    {if $key|substr:-6 EQ 'cancel'}
-      {capture assign=class}cancel{/capture}
-    {/if}
-    <button type="{$type}" name="{$name}" data-form-name="{$form.formName}" {$disabled} class="crm-button {$class}" {$onclick}>
-      {crmGetAttribute html=$html attr='crm-icon' assign='icon'}
-      {capture assign=iconPrefix}{$icon|truncate:3:"":true}{/capture}
-      {if $icon && $iconPrefix eq 'fa-'}
+    {crmGetAttribute html=$html attr='type' assign='btnType'}
+    {crmGetAttribute html=$html attr='name' assign='btnName'}
+    {crmGetAttribute html=$html attr='value' assign='btnValue'}
+    {crmGetAttribute html=$html attr='disabled' assign='btnDisabled'}
+    {crmGetAttribute html=$html attr='onclick' assign='btnOnclick'}
+    {crmGetAttribute html=$html attr='class' assign='btnClass'}
+    {crmGetAttribute html=$html attr='id' assign='btnId'}
+    {if $key|substr:-6 EQ 'cancel'}{capture assign=btnClass}cancel{/capture}{/if}
+    {if $btnType EQ 'cancel'}{capture assign=btnType}submit{/capture}{/if}
+    <button type="{$btnType}" name="{$btnName}" data-form-name="{$form.formName}" {$btnDisabled} class="crm-button {$btnClass}" id="{$btnId}"{$btnOnclick}>
+      {crmGetAttribute html=$html attr='crm-icon' assign='btnIcon'}
+      {capture assign=iconPrefix}{$btnIcon|truncate:3:"":true}{/capture}
+      {if $btnIcon && $iconPrefix eq 'fa-'}
         {assign var='buttonClass' value=' crm-i-button'}
-        {capture assign=iconDisp}<i class="crm-i {$icon}"></i>{/capture}
-      {elseif $icon}
+        {capture assign=iconDisp}<i class="crm-i {$btnIcon}"></i>{/capture}
+      {elseif $btnIcon}
         {assign var='buttonClass' value=' crm-icon-button'}
-        {capture assign=iconDisp}<span class="crm-button-icon ui-icon-{$icon}"> </span>{/capture}
+        {capture assign=iconDisp}<span class="crm-button-icon ui-icon-{$btnIcon}"> </span>{/capture}
       {/if}
       {$iconDisp}
-      {$value}
+      {$btnValue}
     </button>
   {/if}
 {/foreach}
