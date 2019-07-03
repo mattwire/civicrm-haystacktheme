@@ -7,6 +7,7 @@ Misc fixes added by MJW in the CiviCRM Haystack extension
 #crm-container td.label {
   white-space: normal;
   display: table-cell;
+  color: inherit;
 }
 
 /* For reports, make sure the text is visible */
