@@ -26,3 +26,22 @@ Misc fixes added by MJW in the CiviCRM Haystack extension
 div.crm-section div.label {
   color: inherit;
 }
+
+/*
+--------------------------------------------------------------------------------
+crmStatusPage.css overrides
+--------------------------------------------------------------------------------
+*/
+
+/* For drupal7 (bootstrap theme) we need to explicity set the button color and fontweight */
+#crm-status-list .crm-status-item .hush-menu button
+{
+  line-height: 1.3;
+  color: buttontext;
+  font-weight: 600;
+}
+
+/* Make inline links in text more visible (per wordpress) (eg. price set click here, clickable status checks) */
+.crm-container a:-webkit-any-link {
+  text-decoration: underline;
+}
