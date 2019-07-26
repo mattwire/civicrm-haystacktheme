@@ -4868,6 +4868,79 @@ body #crm-container div.crm-summary-row div.crm-content
 
 /* Additions by MJW */
 
+/* Make cancel and delete buttons less prominent */
+#crm-container.crm-container a.button.delete,
+#crm-container.crm-container a.button.delete:link,
+#crm-container.crm-container a.button.delete:hover,
+#crm-container.crm-container a.button.delete:focus,
+#crm-container.crm-container a.button.delete:active,
+#crm-container.crm-container a.button.cancel,
+#crm-container.crm-container a.button.cancel:link,
+#crm-container.crm-container a.button.cancel:hover,
+#crm-container.crm-container a.button.cancel:focus,
+#crm-container.crm-container a.button.cancel:active,
+#crm-container.crm-container input.crm-form-submit.cancel,
+#crm-container.crm-container input.crm-form-submit.cancel:hover,
+#crm-container.crm-container input.crm-form-submit.cancel:focus,
+#crm-container.crm-container input.crm-form-submit.cancel:active,
+.ui-dialog input.crm-form-submit.cancel,
+.ui-dialog input.crm-form-submit.cancel:hover,
+.ui-dialog input.crm-form-submit.cancel:focus,
+.ui-dialog input.crm-form-submit.cancel:active,
+button.ui-button[data-identifier*="_cancel"],
+button.ui-button[data-identifier*="_cancel"]:hover,
+button.ui-button[data-identifier*="_cancel"]:focus,
+button.ui-button[data-identifier*="_cancel"]:active,
+button.crm-button[crm-icon="fa-trash"],
+button.crm-button[crm-icon="fa-trash"]:hover,
+button.crm-button[crm-icon="fa-trash"]:focus,
+button.crm-button[crm-icon="fa-trash"]:active
+{
+  color: #555;
+  border-color: #cccccc;
+  background: #f7f7f7;
+  box-shadow: 0 1px 0 #cccccc;
+  vertical-align: top;
+  text-shadow: none;
+}
+
+#crm-container.crm-container a.button.delete:hover,
+#crm-container.crm-container a.button.delete:focus,
+#crm-container.crm-container a.button.delete:active,
+#crm-container.crm-container a.button.cancel:hover,
+#crm-container.crm-container a.button.cancel:focus,
+#crm-container.crm-container a.button.cancel:active,
+#crm-container.crm-container input.crm-form-submit.cancel:hover,
+#crm-container.crm-container input.crm-form-submit.cancel:focus,
+#crm-container.crm-container input.crm-form-submit.cancel:active,
+.ui-dialog input.crm-form-submit.cancel:hover,
+.ui-dialog input.crm-form-submit.cancel:focus,
+.ui-dialog input.crm-form-submit.cancel:active,
+button.ui-button[data-identifier*="_cancel"]:hover,
+button.ui-button[data-identifier*="_cancel"]:focus,
+button.ui-button[data-identifier*="_cancel"]:active,
+button.crm-button[crm-icon="fa-trash"]:hover,
+button.crm-button[crm-icon="fa-trash"]:focus,
+button.crm-button[crm-icon="fa-trash"]:active
+{
+  background: #fafafa;
+  border-color: #999;
+  color: #23282d;
+}
+
+/* Alter colour of cancel button icon */
+#crm-container.crm-container .crm-button.crm-button-type-cancel .crm-i.fa-times,
+.crm-button.crm-i-button[class*="_cancel"] .crm-i.fa-times
+{
+  color: #555;
+}
+
+#crm-container.crm-container .crm-button.crm-button-type-cancel:hover .crm-i.fa-times,
+.crm-button.crm-i-button[class*="_cancel"]:hover .crm-i.fa-times
+{
+  color: #23282d;
+}
+
 /* Full width tabs on contact record.
  Smaller screens convert to a single column
  Full width clickable link inside tab */
