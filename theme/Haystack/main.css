@@ -4975,3 +4975,8 @@ button.crm-button[crm-icon="fa-trash"]:active
 #crm-container table.report.case-summary {
 	width: 100%;
 }
+
+/* Contact Summary name editable area only the actual name */
+body #crm-container div.crm-summary-contactname-block {
+  display: inline-block;
+}
