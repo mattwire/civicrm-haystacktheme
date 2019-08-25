@@ -298,6 +298,7 @@ a.crm-register-button:focus,
 }
 .crm-container fieldset {
     margin: 10px 0 15px;
+    border: none;
 }
 abbr[title] {
     border-bottom: 0 solid transparent;
