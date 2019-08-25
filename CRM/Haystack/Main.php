@@ -78,7 +78,7 @@ class CRM_Haystack_Main {
       }
 
       CRM_Core_Resources::singleton()
-        ->addStyleUrl(\Civi::service('asset_builder')->getUrl('main.css'));
+        ->addStyleUrl(\Civi::service('asset_builder')->getUrl('main.css'), -40, $region);
 
       // Responsive datatables only makes sense for CiviCRM admin interfaces
       if (!$cmsOnly && self::isAdmin()) {
@@ -132,18 +132,17 @@ class CRM_Haystack_Main {
         if ($this->isAdmin()) {
           if (file_exists(E::path("theme/{$theme}/frontend.css"))) {
             CRM_Core_Resources::singleton()
-              ->addStyleUrl(\Civi::service('asset_builder')
-                ->getUrl('frontend.css'));
+              ->addStyleUrl(\Civi::service('asset_builder')->getUrl('frontend.css'), -50, $region);
           }
         }
         else {
-          $this->addCssToFrontend('frontend.css');
+          $this->addCssToFrontend('frontend.css', $region);
         }
       }
     }
   }
 
-  public function addCssToFrontend($cssFile) {
+  public function addCssToFrontend($cssFile, $region) {
     if (function_exists('wp_enqueue_style')) {
       // Add frontend css for Wordpress
       wp_enqueue_style(
@@ -159,7 +158,7 @@ class CRM_Haystack_Main {
       // @fixme Add a Joomla method
       CRM_Core_Resources::singleton()
         ->addStyleUrl(\Civi::service('asset_builder')
-          ->getUrl('frontend.css'));
+          ->getUrl('frontend.css'), -50, $region);
     }
   }
 
