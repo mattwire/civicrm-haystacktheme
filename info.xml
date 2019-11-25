@@ -13,11 +13,11 @@
     <url desc="Support">https://github.com/mattwire/civicrm-haystacktheme</url>
     <url desc="Licensing">http://www.gnu.org/licenses/agpl-3.0.html</url>
   </urls>
-  <releaseDate>2019-08-25</releaseDate>
-  <version>0.12</version>
+  <releaseDate>2019-11-26</releaseDate>
+  <version>0.13</version>
   <develStage>beta</develStage>
   <compatibility>
-    <ver>5.13</ver>
+    <ver>5.19</ver>
   </compatibility>
   <civix>
     <namespace>CRM/Haystack</namespace>

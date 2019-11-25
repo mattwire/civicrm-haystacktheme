@@ -16,10 +16,10 @@ function haystack_civicrm_config(&$config) {
   Civi::$statics[__FUNCTION__] = 1;
 
   // Add listeners for CiviCRM hooks that might need altering by other scripts
-  Civi::dispatcher()->addListener('hook_civicrm_coreResourceList', 'haystack_symfony_civicrm_coreResourceList', -100);
-  Civi::dispatcher()->addListener('hook_civicrm_alterContent', 'haystack_symfony_civicrm_alterContent', -100);
-  Civi::dispatcher()->addListener('hook_civicrm_buildForm', 'haystack_symfony_civicrm_buildForm', -100);
-  Civi::dispatcher()->addListener('hook_civicrm_pageRun', 'haystack_symfony_civicrm_pageRun', -100);
+  Civi::dispatcher()->addListener('hook_civicrm_coreResourceList', 'haystack_symfony_civicrm_coreResourceList');
+  Civi::dispatcher()->addListener('hook_civicrm_alterContent', 'haystack_symfony_civicrm_alterContent');
+  Civi::dispatcher()->addListener('hook_civicrm_buildForm', 'haystack_symfony_civicrm_buildForm');
+  Civi::dispatcher()->addListener('hook_civicrm_pageRun', 'haystack_symfony_civicrm_pageRun');
 
 
   // For Wordpress we need to register hooks to add css to frontend

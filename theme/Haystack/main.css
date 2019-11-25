@@ -448,6 +448,12 @@ div.crm-container .crm-content label.error
 	text-align: left;
 }
 
+/* Reset the color on the "totalTaxAmount" element on the backend submit contribution form */
+#crm-container div.label,
+.crm-ajax-container div.label {
+  color: inherit;
+}
+
 .crm-container .crm-section .content {
 	margin-left: 19%;
 }
