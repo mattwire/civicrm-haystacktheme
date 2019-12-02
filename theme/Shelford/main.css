@@ -1,6 +1,6 @@
 /**
- * CiviCRM admin theme, in keeping with Joomla by nic@visuali.st
- *  by nic@visuali.st. AGPL
+ * CiviCRM admin theme by nic@visuali.st, AGPL
+ *
  */
 
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600');
@@ -17,12 +17,23 @@
 	--vvv-light-gray: #F9F9F9;
 	--opaque-gray: rgba(0,0,0,0.05);
 	--white: #fff;
-	--green: #378137;
+	--green: #58a458;
+	--light-green: #CFF0BE;
 	--blue: #24748c;
+	--light-blue: #84baca;
 	--cyan: #22ceea;
 	--red: #942a25;
 	--gold: #c67605;
 }
+
+/* Dev notes: work in progress
+		- need to add fallbacks to variables for IE support 
+		- some sprites are have full paths which will break depending on CMS & location: replace with FA or package with image folder		
+		- done so far: front dashboard, basic form, buttons, contact screen, modal
+		- responsive so far: front dashboard
+		- ideally: swap font-size pixels to REMs
+		- the quantity of !important statements is a sign of how much this is fighting other layers.
+		*/
 
 /*
 	
@@ -60,6 +71,20 @@
 	background-color: transparent !important;
 	border: 0 solid transparent !important;
 }
+.crm-container del,
+.crm-container .crm-is_deleted
+ .crm-container table.caseSelector td.status-urgent
+.crm-container .font-red,
+.crm-container .status-removed,
+.crm-container .status-overdue,
+.crm-container .status-fatal,
+.crm-container .status-hold,
+.crm-container .status-past,
+.crm-contact-deceased,
+.crm-container .status-warning {
+    color: var(--red);
+
+}
 
 /* 
 	
@@ -70,7 +95,7 @@
 
 /* base */
 
-.crm-container,
+.crm-container #alpha-filter li,
 .crm-container h3, .crm-container,
 #crm-container .ui-tabs-panel,
 .crm-container .crm-tab-button a, 
@@ -82,7 +107,11 @@
 .crm-container select, 
 .crm-container textarea,
 .crm-container button,
-div.ui-dialog {
+div.ui-dialog,
+.crm-container,
+#crm-container,
+.crm-container .ui-widget,
+#crm-container .ui-widget {
 	font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
 b, strong {
@@ -91,6 +120,55 @@ b, strong {
 .crm-container div.crm-clear {
     font-size: 14px;
 }
+
+/* Icons */
+
+.crm-i.crm-i-green {
+	color: var(--green);
+}
+.crm-i.crm-i-blue {
+    color:var(--light-blue);
+}
+.crm-container .crm-icon {
+	font: normal normal normal 14px/1 FontAwesome;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 1;
+    font-family: FontAwesome;
+	font-size: inherit;
+	text-rendering: auto;
+	-moz-osx-font-smoothing: grayscale;
+	color: var(--vv-dark-gray);
+	text-indent: inherit;
+	margin: 2px 0 0 2px;
+}
+.select2-results .select2-highlighted .Individual-icon, 
+.crm-container .Individual-icon,
+.select2-results .select2-highlighted .Organization-icon, 
+.crm-container .Organization-icon {
+	background-image: none;
+}
+.select2-results .select2-highlighted .Individual-icon:before, 
+.crm-container .Individual-icon:before {
+	content: "\f007";
+	color: var(--blue);
+} 
+.select2-results .select2-highlighted .Organization-icon:before, 
+.crm-container .Organization-icon:before {
+	content: "\f0e8";	
+	color: var(--green);
+}
+#crm-container div.crm-summary-display_name {
+	font-size: 24px;
+	padding: 2px 0 15px 0;
+}
+.crm-summary-display_name .crm-icon {
+	font-size: 24px;
+    margin: 0 15px 0 0;
+}
+
+
+
 
 /* headers */
 
@@ -132,18 +210,49 @@ h1.title {
 
 .crm-container .help,
 .crm-container #help,
-.crm-container .status {
-	margin: 10px 2px 20px;
+.crm-container .status,
+#crm-container .crm-extensions-upgrade {
+	/*margin: 3px 0px 15px;*/
+	margin: 10px 0;
 	padding: 8px 14px;
-   border-radius: 3px !important;
-   font-size: 14px;
+	border-radius: 3px !important;
+	border: 0 solid transparent;
+}
+.crm-container .crm-search-tasks,
+.crm-container .crm-tasks {
+	background-color: #F0F0E8;
+	color: #52534D;
+}
+#crm-container .crm-extensions-upgrade,
+.crm-container .status {
+    border: 1px solid #fef385 !important;
 }
 .crm-container .status {
-   background-color: #E4F3FF;
-   border: 1px solid #C7E6FF;
+	margin: 3px 0px 15px;
+	padding: 8px 14px;
 }
-/*
+#crm-container .crm-extensions-upgrade {
+    margin: 5px 0 0 0;
+    padding: 3px;
+}
+.crm-container .help, 
+.crm-container #help,
+.crm-container .status.crm-ok {
+	background-color: var(--light-green);	
+	border: 0 solid transparent;
+}
+/* Footer */
 
+#civicrm-footer {
+	line-height: 22px;
+	font-size: 12px;
+}
+#civicrm-footer .status {
+	padding: 3px 5px;
+}
+
+
+/*
 	 Buttons
 	 
 */
@@ -203,6 +312,20 @@ h1.title {
 }
 .crm-container span.crm-button-type-cancel {
 	float: right !important;
+}
+
+/* Pagination */
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, 
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+	background: var(--v-light-gray);
+	border: 1px solid var(--dark-gray);
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+	padding: 4px 10px;
+	border-radius: 3px;
+	line-height: 20px;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
 
 /*
@@ -310,6 +433,14 @@ i.fa-pencil {
 	border: 0 solid transparent;
 	padding-bottom: 10px;
 }
+.crm-container.ui-dialog .status {
+	margin: 0;
+   border: 2px solid #ff6;
+   border-radius: 0;
+}
+.crm-container.ui-dialog .spacer {
+	display: none;
+}
 
 /*
 	
@@ -321,7 +452,9 @@ i.fa-pencil {
    font-size: 14px;
    padding: 4px;
 }
-.crm-container .crm-section .label {
+.crm-container .crm-section .label,
+.crm-container .form-layout td.label,
+.crm-container .form-layout-compressed td.label {
     background-color: transparent;
     color: var(--vv-dark-gray); 
 }
@@ -363,8 +496,12 @@ i.fa-pencil {
 	height: auto;
 }
 .crm-container .description {
-	font-size: 16px;
+	font-size: 0.92rem;
 	line-height: 20px;
+}
+.crm-container .view-contact-groups .description {
+	margin: 15px 8px;
+	font-size: 0.92rem;
 }
 .crm-container span.description {
 	display: block;
@@ -384,9 +521,11 @@ i.fa-pencil {
 .crm-container .action-link {
 	margin: 10px 0 15px;
 }
+.crm-container .select2-container-multi .select2-choices .select2-search-choice {
+	font-size: 14px;
+}
 
 /* 
-
 	 Page content - tabbed panel 
 	 
 	 */
@@ -403,8 +542,8 @@ i.fa-pencil {
 	border-radius: 0;
 }
 .crm-container .crm-tab-button a, 
-.crm-container .ui-tabs .ui-tabs-nav li a {
-	padding: 8px 10px !important;
+.crm-container .ui-tabs li a {
+	padding: 8px 10px;
 	line-height: 18px;
 	border: 1px solid transparent;
 	border-radius: 4px 4px 0 0;
@@ -412,22 +551,25 @@ i.fa-pencil {
 	background-color: transparent;
 	margin: 0 5px 0 0;
 }
+.crm-container .ui-tabs .ui-tabs-nav li a {
+	padding: 5px 10px !important;
+}
 .crm-container li.crm-tab-button.ui-state-active a, 
 .crm-container li.crm-tab-button a:hover,
-.crm-container li.crm-tab-button a:focus {
-	background: var(--vv-dark-gray);
+.crm-container li.crm-tab-button a:focus,
+.crm-container .ui-tabs .ui-tabs-nav li.ui-tabs-active a,
+.crm-container .ui-tabs .ui-tabs-nav li a:hover,
+.crm-container .ui-tabs .ui-tabs-nav li a:focus {
 	color: var(--vv-dark-gray);
 	background: var(--vvv-light-gray);
 	border: 1px solid var(--light-gray);
 	border-bottom-color: transparent;
 	cursor: pointer !important;
 	min-height: 20px;
-}
-.crm-container .crm-tab-button a {
-   margin-bottom: -1px;
+	padding: 5px 10px !important;
 }
 .crm-container .ui-tabs .ui-tabs-nav li {
-   margin-bottom: -1px;
+	margin-bottom: -2px;
 	min-height: 20px;
 }
 #crm-container #mainTabContainer .ui-tabs-panel {
@@ -444,6 +586,10 @@ i.fa-pencil {
 .crm-container table.crm-info-panel td,
 #crm-container div.crm-summary-row {
     background-color: var(--vv-light-gray) !important;
+}
+.crm-container #extensions td,
+.crm-container #extensions table.crm-info-panel td {
+	background-color: transparent !important;
 }
 .crm-container .crm-tab-button a em,
 .crm-container li.crm-tab-button.ui-state-active a em, 
@@ -512,6 +658,14 @@ i.fa-pencil {
 	text-align: left;
 	vertical-align: top;
 }
+.crm-container th, 
+.crm-container table.display thead th, 
+.crm-container table thead.sticky th, 
+.crm-container table.caseSelector tr.columnheader th {
+	background-color: transparent;
+	border-color: transparent;
+	color: var(--vvv-dark-gray);
+}
 table.dataTable.stripe tbody tr.odd, 
 table.dataTable.display tbody tr.odd {
 	background-color: var(--vvv-light-gray);
@@ -522,19 +676,36 @@ table.dataTable.display tbody tr.even {
 }
 .crm-container table.display thead th,
 .crm-container tbody th {
-   padding: 8px;
+	padding: 8px;
 	border-bottom: 1px solid var(--light-gray);
 	font-size: 15px;
  }
 .crm-container .dataTables_info {
-   padding: 8px;
-   font-size: 12px;
+	padding: 8px;
+	font-size: 12px;
+}
+table.dataTable.no-footer {
+	border-bottom: 1px solid transparent;
+}
+.crm-container #Extensions td {
+	padding: 4px;
+}
+.crm-container #Extensions h3 {
+    background-color: var(--v-dark-gray);
+    color: #fff;
+    margin: 0;
+    border-radius: 3px 3px 0 0;
+    border-color: transparent;
+}
+.crm-container div.contact_panel td.label, 
+.crm-container #customFields div.contact_panel td.label, 
+.crm-container table.crm-info-panel td.label {
+	color: var(--vv-dark-gray);
+	font-weight: bold;
 }
 
 /* 
-
 	ADMIN-WIDE STRUCTURE ELEMENTS
-
 */
 
 /* SIDEBAR */
@@ -576,22 +747,22 @@ table.dataTable.display tbody tr.even {
 	color: #fff;
 }
 #crm-recently-viewed li.crm-recently-viewed {
-	background-color: var(--dark-gray);
+	background-color: var(--light-gray);
 	border: 0 solid transparent;
 	border-radius: 3px;
 	text-shadow: none;
-	margin-bottom: 5px;
-	padding: 2px 4px;
+	margin-bottom: 6px;
+	padding: 4px 6px;
 }
 #crm-recently-viewed ul li.crm-recently-viewed:hover {
-	background-color: var(--v-dark-gray);
+	background-color: var(--mid-gray);
 	border: 0 solid transparent;
 }
 #crm-recently-viewed a {
 	font-weight: normal;
-	color: #fff;
+	color: var(--vv-dark-gray);
 	text-decoration: none;
-	font-size: 12px;
+	font-size: 13px;
 }
 #crm-recently-viewed .crm-recentview-wrapper {
 	background-color: transparent;
@@ -599,22 +770,29 @@ table.dataTable.display tbody tr.even {
    border-left: 1px solid var(--vvv-light-gray);
 }
 #crm-recently-viewed.left .crm-recentview-wrapper {
-	right: -110px;
-	top: 0px;
-	padding: 3px 10px 3px;
+	right: 0;
+	top: 0;
+	padding: 4px 6px 4px;
 	border-left: 1px solid white;
 	border-radius: 0 3px 3px 0;
-	width: 120px;
-	background: gray;
+	width: auto;
+	background: var(--vv-dark-gray);
+}
+#crm-recently-viewed.left .crm-recentview-wrapper a {
+	color: var(--v-light-gray);
+	padding: 2px 5px;
+	border-bottom: 2px solid transparent;
 }
 #crm-recently-viewed.left .crm-recentview-wrapper a:hover,
 #crm-recently-viewed.left .crm-recentview-wrapper a:focus {
-	color: var(--vv-light-gray);
+	color: #fff;
+	border-bottom: 2px solid #fff;
 }
 
 /* MAIN */
 
-#crm-container table.crm-inline-edit-form td, #crm-container div.crm-inline-edit-form {
+#crm-container table.crm-inline-edit-form td,
+#crm-container div.crm-inline-edit-form {
 	background-color: var(--vvv-light-gray) !important;
 	white-space: nowrap;
 	padding: 10px;
@@ -622,7 +800,9 @@ table.dataTable.display tbody tr.even {
 	border: 1px solid var(--vv-light-gray);
 	margin-bottom: 20px;
 }
-.crm-container .crm-form-block {   
+.crm-container .crm-form-block,
+.crm-container .crm-search-tasks,
+.crm-container .crm-tasks {   
 	background: var(--vvv-light-gray);
 	border: 1px solid  var(--vv-light-gray);
 	border-radius: 3px;
@@ -634,6 +814,26 @@ table.dataTable.display tbody tr.even {
 }
 .crm-container .CRM_Contact_Form_Contact .crm-form-block {
 	background: transparent;
+}
+.crm-container .crm-pager {
+    background-color: var(--vv-light-gray);
+}
+/* SEARCH */
+
+.crm-container div#alpha-filter {
+	background-color: var(--mid-gray);
+   margin: 15px 0 5px;
+}
+.crm-container #alpha-filter li {
+	font-weight: 600;
+}
+.crm-container #alpha-filter a {
+	color: var(--blue);
+	border-color: var(--blue);
+}
+/* SELECT LIST */
+.crm-container .select2-search-choice-close {
+    padding: 0 !important;
 }
 
 /*
@@ -670,27 +870,33 @@ table.dataTable.display tbody tr.even {
 .crm-container .crm-accordion-body {
 	border: 0 solid transparent;
 	line-height: 18px;
-   color: var(--vvv-dark-gray);
-   font-size: 14px;
+	color: var(--vvv-dark-gray);
+	font-size: 14px;
 	border-top: 1px solid var(--light-gray);
 	padding: 10px !important;
 }
 .crm-container .crm-accordion-body > div {
 	padding: 10px !important;
 }
+.crm-container .ui-tabs-panel .crm-accordion-body > div {
+	padding: 0 !important;
+}
+.crm-container .ui-tabs-panel .crm-accordion-body .description {
+	margin: -5px 0 5px 8px;
+}
 .crm-container .crm-accordion-header:hover,
 .crm-container .crm-accordion-header.active,
 .crm-container .crm-accordion-header.active:hover {
-   background-color: var(--mid-gray);
+	background-color: var(--mid-gray);
 }
 .crm-container .crm-accordion-body .crm-search_criteria_basic-accordion,
 .crm-container .crm-advanced_search_form-accordion .crm-accordion-wrapper {
 	padding: 0 !important;
-   background: var(--vv-light-gray);
-   border: 1px solid var(--light-gray);
+	background: var(--vv-light-gray);
+	border: 1px solid var(--light-gray);
 }
 .crm-container .collapsed .crm-accordion-header {
-   border-radius: 3px;
+	border-radius: 3px;
 }
 .crm-container .crm-accordion-header {
 	border-radius: 3px 3px 0 0;
@@ -707,11 +913,30 @@ table.dataTable.display tbody tr.even {
    margin-left: 10px;
 }
 .crm-container .crm-advanced_search_form-accordion .crm-accordion-body .crm-accordion-header {
-   padding: 6px 25px;
-   margin-left: 0;
-   background-position-y: 6px;
+	padding: 6px 25px;
+	margin-left: 0;
+	background-position-y: 6px;
 	background-position-x: 7px;
 }
+.crm-container .ng-scope {
+	margin: 10px 0;
+}
+.crm-container .ng-scope .ui-widget.ui-widget-content {
+	border: 0 solid transparent;
+}
+.crm-container .ng-scope .ui-tabs > div {
+	padding: 10px;
+	background: #fff;
+	border: 1px solid var(--light-gray);
+	border-radius: 0 4px 4px 4px;
+	border-top: 0 solid transparent;
+}
+.crm-container .ng-scope  li.ui-tabs-active a, 
+.crm-container .ng-scope  li a:hover, 
+.crm-container .ng-scope  li a:focus {
+	background: #fff !important;
+}
+
 
 /* DASHBOARD */
 
@@ -742,6 +967,36 @@ table.dataTable.display tbody tr.even {
 #civicrm-news-feed .crm-news-feed-item-link {
 	padding: 0 5px 5px;
 	text-align: right;
+}
+
+/* REPORTS */
+
+.crm-container .crm-report-field-form-block {
+	background: transparent;
+    border: 0px solid transparent;
+    padding: 0;
+}
+.crm-container .form-layout td.label,
+.crm-container form table.report .label,
+.crm-container form table label,
+.crm-container form table.report label {
+    color: var(--vv-dark-gray);
+    font-weight: bold;
+    font-size: 14px;
+    padding-top: 9px;
+}
+.crm-container .crm-form-block {
+    font-size: inherit;
+    color: #3E3E3E;
+    margin-bottom: 25px;
+}
+#crm-container .report-contents {
+	background-color: transparent;
+    border: 1px solid var(--light-gray);
+    font-size: 14px;
+    border-left: 0px solid transparent;
+    border-right: 0px solid transparent;
+
 }
 
 /* CONTACT SUMMARY */
@@ -775,8 +1030,8 @@ table.dataTable.display tbody tr.even {
 	color: #444;
 	font-size: 14px !important;
 	line-height: 26px !important;
-   padding: 5px 10px !important;
-   min-width: 150px;
+	padding: 5px 10px !important;
+	min-width: 150px;
 }
 #crm-container #DataTables_Table_0_wrapper,
 #crm-container #DataTables_Table_1_wrapper,
@@ -813,4 +1068,7 @@ table.dataTable.display tbody tr.even {
 #mainTabContainer li.crm-tab-button {
 	border: 0 solid transparent !important;
 	margin: 0 0 -1px 0 !important;
+}
+#crm-main-content-wrapper .row {
+	margin-left: 0;
 }
