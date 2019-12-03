@@ -1,3 +1,5 @@
+# MOVED TO https://lab.civicrm.org/extensions/haystacktheme
+
 # haystack
 
 This provides a simple, modern theme for CiviCRM (based on the theme supplied in CiviCRM Admin Utilities for Wordpress).
